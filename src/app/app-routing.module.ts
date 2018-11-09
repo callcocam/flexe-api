@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
-import { operacionalRoutes } from './component/admin/operational/operational-routing.module';
-import { cityRoutes } from './component/admin/operational/city/city-routing.module';
-import { ContentComponent } from './component/content/content.component';
+import { operacionalRoutes } from './admin/operational/operational-routing.module';
+import { cityRoutes } from './admin/operational/city/city-routing.module';
 import { AuthGuardRouterService } from './shared/services/auth-guard-router.service';
-import { roleRoutes } from './component/admin/operational/role/role-routing.module';
-import { prvilegieRoutes } from './component/admin/operational/privilegie/privilegie-routing.module';
-import { resourceRoutes } from './component/admin/operational/resource/resource-routing.module';
-import { companieRoutes } from './component/admin/operational/companie/companie-routing.module';
-import { userRoutes } from './component/admin/operational/user/user-routing.module';
+import { roleRoutes } from './admin/operational/role/role-routing.module';
+import { prvilegieRoutes } from './admin/operational/privilegie/privilegie-routing.module';
+import { resourceRoutes } from './admin/operational/resource/resource-routing.module';
+import { companieRoutes } from './admin/operational/companie/companie-routing.module';
+import { userRoutes } from './admin/operational/user/user-routing.module';
+import { ContentComponent } from './content/content.component';
 
 
 operacionalRoutes.push(...cityRoutes)

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MEAT_API } from '../app.api';
-import { AuthService } from '../component/auth/auth.service';
+import { AuthService } from '../admin/auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +10,7 @@ import { AuthService } from '../component/auth/auth.service';
 export class ResourcesService {
 
     public path = "";
-    public params:HttpParams;
+    public params: HttpParams;
 
     constructor(
         private http: HttpClient,
@@ -19,35 +19,35 @@ export class ResourcesService {
     public baseUrl = MEAT_API;
 
     build(searchTerm = null) {
-        
-        if(searchTerm){
+
+        if (searchTerm) {
 
             this.params = new HttpParams()
-            .append('between', searchTerm.between)
-            .append('column', searchTerm.column)
-            .append('limit', searchTerm.limit)
-            .append('offSet', searchTerm.offSet)
-            .append('order', searchTerm.order)
-            .append('search', searchTerm.search)
-            .append('start', searchTerm.start)
-            .append('status', searchTerm.status)
-            .append('end', searchTerm.end)
-            .append('page', searchTerm.page)
-           
+                .append('between', searchTerm.between)
+                .append('column', searchTerm.column)
+                .append('limit', searchTerm.limit)
+                .append('offSet', searchTerm.offSet)
+                .append('order', searchTerm.order)
+                .append('search', searchTerm.search)
+                .append('start', searchTerm.start)
+                .append('status', searchTerm.status)
+                .append('end', searchTerm.end)
+                .append('page', searchTerm.page)
+
         }
         return this;
 
-      }
-    
-      list():Observable<any> {
-       
+    }
+
+    list(): Observable<any> {
+
         return this.http.get(
 
-            `${this.baseUrl}${this.path}`,{  params:this.params }
+            `${this.baseUrl}${this.path}`, { params: this.params }
 
         );
-      }
-    
+    }
+
 
     getItem(id?: any): Observable<any> {
 
@@ -99,7 +99,7 @@ export class ResourcesService {
         // });
     }
 
-    delete(id: any): Observable<any>{
+    delete(id: any): Observable<any> {
 
         return this.http.delete(`${this.baseUrl}${this.path}/${id}/delete`);
 

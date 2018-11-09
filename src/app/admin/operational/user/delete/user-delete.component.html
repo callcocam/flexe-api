@@ -1,5 +1,5 @@
 <main class="app-content">
-    <app-breadcrumb page="#MODULO_CAP#" action="Excluir" route="admin/#MODULO#s" description="Excluir A #MODULO_CAP#: {{data?.name}}"></app-breadcrumb>
+    <app-breadcrumb page="User" action="Excluir" route="admin/usuarios" description="Excluir A User: {{data?.name}}"></app-breadcrumb>
     <div class="row">
       <div class="col-md-12">
         <div class="confirm">
@@ -20,7 +20,7 @@
                     </div>                  
                     <button class="btn btn-danger" type="button" (click)="deleteFrom()"> Deseja Realmente Excluir<i class="load fa fa-spinner fa-spin" style="display: none"></i>
                     </button> 
-                    <a title="Cliente"  routerLink="/admin/#MODULO#s" class="btn btn-primary"><i class="fa fa-reply"></i> Voltar voltar para a lista</a>
+                    <a title="Cliente"  routerLink="/admin/usuarios" class="btn btn-primary"><i class="fa fa-reply"></i> Voltar voltar para a lista</a>
                   </div>
                   <div class="card-footer text-muted"> {{data?.created_at}} </div>
                 </div>

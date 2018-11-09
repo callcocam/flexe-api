@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Settings } from '../../../../shared/settings.model';
-import { ResourcesService } from '../../../../shared/resources.service';
+import { Settings } from '../../../shared/settings.model';
+import { ResourcesService } from '../../../shared/resources.service';
 import { SnotifyService, Snotify } from 'ng-snotify';
 
 @Component({

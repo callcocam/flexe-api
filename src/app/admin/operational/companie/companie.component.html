@@ -1,6 +1,5 @@
 <main class="app-content">
-  <app-breadcrumb page="Empresa" description="Detalhes Da Empresa"></app-breadcrumb>
-  <p>
-    companie works!
-  </p>
-</main>
+    <app-breadcrumb page="Companies" description="Lista De Companies"></app-breadcrumb>
+      <ct-table [resource]="'/companie'" [routeAdd]="'/admin/companies/cadastrar'"></ct-table>	
+  </main>
+  

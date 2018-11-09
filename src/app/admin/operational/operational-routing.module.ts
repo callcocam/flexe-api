@@ -1,9 +1,9 @@
 
 import { Routes} from '@angular/router';
 
-import {DashboardComponent} from '../../content/dashboard.component';
 import {AboutComponent} from '../about/about.component';
-import {AuthGuardRouterService} from '../../../shared/services/auth-guard-router.service';
+import {AuthGuardRouterService} from '../../shared/services/auth-guard-router.service';
+import { DashboardComponent } from '../../content/dashboard.component';
 
 
 export const operacionalRoutes:Routes = [

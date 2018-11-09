@@ -55,7 +55,7 @@ export class TableLayoutComponent implements OnInit {
         this.service.path = this.resource
 
 
-        this.service.build(this.params).list().subscribe(response => {
+        this.service.build(this.params).getList().subscribe(response => {
 
             this.settings = new Settings(response)
 

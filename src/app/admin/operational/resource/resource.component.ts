@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ResourcesService} from '../../../../shared/resources.service';
+import {ResourcesService} from '../../../shared/resources.service';
 import { Settings } from 'src/app/shared/settings.model';
 
 @Component({

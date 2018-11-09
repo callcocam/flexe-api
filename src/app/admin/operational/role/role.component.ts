@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Settings } from '../../../../shared/settings.model';
-import { ResourcesService } from '../../../../shared/resources.service';
+import { ResourcesService } from '../../../shared/resources.service';
 
 @Component({
   selector: 'app-role',
@@ -8,7 +7,6 @@ import { ResourcesService } from '../../../../shared/resources.service';
 })
 export class RoleComponent implements OnInit {
 
-  source: Settings[];
 
   constructor(private service: ResourcesService) { }
 

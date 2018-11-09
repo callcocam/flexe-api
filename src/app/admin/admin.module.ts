@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {OperationalModule} from './operational/operational.module';
+import {OperationalModule} from '../admin/operational/operational.module';
 import {ContentComponent} from '../content/content.component';
-import {AboutComponent} from './about/about.component';
+import {AboutComponent} from '../admin/about/about.component';
 import {HeaderComponent} from '../content/header.component';
 import {SidebarComponent} from '../content/sidebar.component';
 import {FooterComponent} from '../content/footer.component';

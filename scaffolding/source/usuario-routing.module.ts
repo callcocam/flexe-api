@@ -44,7 +44,8 @@ export const #MODULO#Routes: Routes = [
     canActivate: [AuthGuardRouterService],
     data: {
       title: 'Excluir #MODULO_CAP#'
-    },
+    }
+  },
   {
     path: '#MODULO#s/:id/view',
     component:  #MODULO_CAP#ViewComponent,

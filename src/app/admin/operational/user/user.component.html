@@ -1,6 +1,5 @@
 <main class="app-content">
-  <app-breadcrumb page="Usrários" description="Detalhes Da Empresa"></app-breadcrumb>
-  <p>
-  user works!
-</p>
-</main>
+    <app-breadcrumb page="Users" description="Lista De Users"></app-breadcrumb>
+      <ct-table [resource]="'/user'" [routeAdd]="'/admin/users/cadastrar'"></ct-table>	
+  </main>
+  

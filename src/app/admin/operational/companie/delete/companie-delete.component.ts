@@ -1,24 +1,24 @@
 /**
- * Componente de cadastro de #MODULO_PLURAL#.
+ * Componente de cadastro de companies.
  *
  * @author Claudio Campos <contato@sigasmart.com.br>
  * @since 0.0.1
  */
 
-/*#import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/shared/messages/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService, Snotify } from 'ng-snotify';
 
 @Component({
-  selector: 'call-#MODULO#-delete',
-  templateUrl: './#MODULO#-delete.component.html',
-  styleUrls: ['./#MODULO#-delete.component.css']
+  selector: 'call-companie-delete',
+  templateUrl: './companie-delete.component.html',
+  styleUrls: ['./companie-delete.component.css']
 })
-export class #MODULO_CAP#DeleteComponent implements OnInit {
+export class CompanieDeleteComponent implements OnInit {
 
-  redirectAfterDelete = ['/admin/#MODULO#s'];
+  redirectAfterDelete = ['/admin/cidades'];
 
   constructor( public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
@@ -38,7 +38,7 @@ export class #MODULO_CAP#DeleteComponent implements OnInit {
 
     let id = this.activateRoute.snapshot.params['id'];
 
-    this.service.path = '/#MODULO#';
+    this.service.path = '/companie';
 
     this.service.edit(id).subscribe(      
       response => {
@@ -66,7 +66,7 @@ export class #MODULO_CAP#DeleteComponent implements OnInit {
 
     let id = this.activateRoute.snapshot.params['id'];
 
-    this.service.path = '/#MODULO#';
+    this.service.path = '/companie';
 
     this.service.delete(id).subscribe(response => {
 
@@ -92,4 +92,4 @@ export class #MODULO_CAP#DeleteComponent implements OnInit {
       })
   }
 
-}#*/
+}

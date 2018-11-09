@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {ResourceComponent} from './resource/resource.component';
-import {PrivilegieComponent} from './privilegie/privilegie.component';
-import {UserComponent} from './user/user.component';
-import {RoleComponent} from './role/role.component';
-import {CompanieComponent} from './companie/companie.component';
-import {BreadcrumbComponent} from '../utils/breadcrumb/breadcrumb.component';
-import {SharedModule} from '../../../shared/shared.module';
-import {RoleService} from './role/role.service';
+import { ResourceComponent } from './resource/resource.component';
+import { PrivilegieComponent } from './privilegie/privilegie.component';
+import { RoleComponent } from './role/role.component';
+import { BreadcrumbComponent } from '../utils/breadcrumb/breadcrumb.component';
+import { SharedModule } from '../../shared/shared.module';
 import { CityComponent } from './city/city.component';
 import { CityEditComponent } from './city/city-edit/city-edit.component';
 import { CityDeleteComponent } from './city/city-delete/city-delete.component';
@@ -19,6 +16,24 @@ import { ResourceEditComponent } from './resource/resource-edit/resource-edit.co
 import { ResourceDeleteComponent } from './resource/resource-delete/resource-delete.component';
 import { PrivilegieDeleteComponent } from './privilegie/privilegie-delete/privilegie-delete.component';
 import { PrivilegieEditComponent } from './privilegie/privilegie-edit/privilegie-edit.component';
+
+import {
+    CompanieCreateComponent,
+    CompanieEditComponent,
+    CompanieComponent,
+    CompanieViewComponent,
+    CompanieDeleteComponent
+} from './companie';
+
+
+import {
+    UserComponent,
+    UserCreateComponent,
+    UserEditComponent,
+    UserDeleteComponent,
+    UserViewComponent
+} from './user';
+
 
 @NgModule({
     imports: [
@@ -31,7 +46,15 @@ import { PrivilegieEditComponent } from './privilegie/privilegie-edit/privilegie
         RoleComponent,
         ResourceComponent,
         PrivilegieComponent,
+        CompanieCreateComponent,
+        CompanieEditComponent,
         CompanieComponent,
+        CompanieViewComponent,
+        CompanieDeleteComponent,
+        UserCreateComponent,
+        UserEditComponent,
+        UserDeleteComponent,
+        UserViewComponent,
         UserComponent,
         CityComponent,
         CityEditComponent,
@@ -43,9 +66,9 @@ import { PrivilegieEditComponent } from './privilegie/privilegie-edit/privilegie
         PrivilegieDeleteComponent,
         PrivilegieEditComponent
     ],
-    exports:[
+    exports: [
         BreadcrumbComponent
     ],
-    providers:[RoleService]
+    providers: []
 })
 export class OperationalModule { }
