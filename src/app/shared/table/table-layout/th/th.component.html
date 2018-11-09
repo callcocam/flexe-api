@@ -1,0 +1,6 @@
+<i class="fa" 
+[class.fa-sort-desc]="map.order && map.name == column && direction" 
+[class.fa-sort-asc]="map.order && map.name == column && !direction"
+[class.fa-sort]="map.order && map.name != column"
+ aria-hidden="true"></i>
+ {{ map.title }} 

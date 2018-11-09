@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-8">
+            {{ caption }}
+          </div>
+          <div class="col-4 text-right actions">
+            <a class="navigation btn-ajax btn btn-success" title="Adicionar {{ caption }}" routerLinkActive="active"
+              routerLink="{{routeAdd}}"><i class="fa fa-plus"></i> Adcionar Novo</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!--INICIA OS FILTROS-->
+         <app-filters  *ngIf="params" [params]="params" (onParamsSearch)="onParamsSearch($event)"></app-filters>
+        <!--FIM DOS FILTROS-->
+        
+        <table [id]="tableId" [ngClass]="tableClass">
+          <thead>
+            <tr>
+              <th *ngFor="let map of columnMaps" [class.order]="map.order" (click)="onOrder(map.name,map.order)" [style.width]="map.width">
+                <i class="fa" 
+                [class.fa-sort-desc]="map.order && map.name == column && direction" 
+                [class.fa-sort-asc]="map.order && map.name == column && !direction"
+                [class.fa-sort]="map.order && map.name != column"
+                 aria-hidden="true"></i>
+                 {{ map.title }} 
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of records">
+              <td *ngFor="let map of columnMaps" [ctStyleCell]="record[map.access(record)]" [ngSwitch]="map.format">
+                <span *ngSwitchCase="'date'">
+                  {{ record[map.access(record)] | formatCell:map.format }}
+                </span>
+                <a *ngSwitchCase="'btn'" [class]="map.classe" [routerLink]="[record[map.access(record)]]">
+                  <i [class]="map.icone"></i>{{ map.title }}
+                </a>
+                <span *ngSwitchCase="'status'" class="badge badge-success" [class.badge-danger]="!record[map.access(record)]">
+                 Situação
+                </span>
+                <img *ngSwitchCase="'img'" [src]="record[map.access(record)]" alt="Image">
+                <span *ngSwitchDefault>
+                  {{ record[map.access(record)] | formatCell:map.format }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="!records">
+            <tr><td><h3>Sua Pesquisa Não Retornou Nenhum Resultado</h3></td></tr>
+          </tfoot>
+        </table>
+
+        <!--INCIA A PAGINAÇÃO-->
+        <div class="container">
+          <div class="text-center">
+            <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="pager.currentPage === 1">
+                <a href="" (click)="changePage($event,1)" class="page-link"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+              </li>
+
+              <li class="page-item" [class.disabled]="pager.currentPage == 1">
+                <a href="" (click)="changePage($event,previosPage())" class="page-link"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+              </li>
+
+              <li class="page-item" *ngFor="let page of pager.pages" [class.active]="pager.currentPage == page">
+                <a href="" (click)="changePage($event,page)" class="page-link">{{page}}</a>
+              </li>
+
+              <li class="page-item" [class.disabled]="pager.currentPage === pager.totalPages">
+                <a href="" (click)="changePage($event,nextPage())" class="page-link"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              </li>
+
+              <li class="page-item" [class.disabled]="pager.currentPage === pager.totalPages">
+                <a href="" (click)="changePage($event,pager.totalPages)" class="page-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--FIM A PAGINAÇÃO-->
+      </div>
+    </div>
+  </div>

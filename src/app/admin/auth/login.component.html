@@ -1,0 +1,29 @@
+<div class="login-box">
+        <form class="login-form"  [formGroup]="loginForm" novalidate>
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Tela De Login</h3>
+            <div class="form-group">
+                <app-input errorMessage="Campo obrigatório" label="Email">
+                    <input formControlName="email" class="form-control" type="text" placeholder="Email" autofocus>
+                </app-input>
+            </div>
+            <div class="form-group">
+                <app-input errorMessage="Campo obrigatório" label="Senha">
+                    <input formControlName="password" class="form-control" type="password" placeholder="Password">
+                </app-input>
+            </div>
+            <div class="form-group">
+                <div class="utility">
+                    <div class="animated-checkbox">
+                        <label>
+                            <input type="checkbox"><span class="label-text">Enviar Dados</span>
+                        </label>
+                    </div>
+                    <p class="semibold-text mb-2"><a routerLinkActive="active" [routerLink]="['/admin/auth/forgot']">Recuperar Senha?</a></p>
+                </div>
+            </div>
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block"  (click)="login(loginForm.value)" [disabled]="!loginForm.valid"><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sessão</button>
+            </div>
+        </form>
+    </div>
+

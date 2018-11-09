@@ -1,0 +1,7 @@
+ <div class="form-group row">
+    <label class="control-label col-md-3">{{label}}</label>
+    <div class="col-md-8">      
+        <ng-content></ng-content>
+      <input type="file" (change)="onFileChanged($event)"  class="form-control" >
+    </div>
+  </div>

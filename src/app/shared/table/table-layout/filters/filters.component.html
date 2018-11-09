@@ -1,0 +1,51 @@
+<form *ngIf="params" class="row" [formGroup]="formFilterGroup" novalidate (change)="onSearch()" >
+    <div class="col-md-4">
+      <div class="form-group-material">
+        <label for="between" class="label-material">Sececione Um Perildo</label>
+        <select id="between" formControlName="between" class="input-material between form-control"  placeholder="--Selecione--">
+          <option value="">--Selecione--</option>
+          <option value="scopeCurrentHour">Está Hora</option>
+          <option value="scopeLastHour">Ultima Hora</option>
+          <option value="scopeCurrentDay">Este Dia</option>
+          <option value="scopeLastDay">Ultimo Dia</option>
+          <option value="scopeCurrentWeek">Esta Nemana</option>
+          <option value="scopeLastWeek">Ultimo Nemana</option>
+          <option value="scopeCurrentMonth">Este Mês</option>
+          <option value="scopeLastMonth">Último Mês</option>
+          <option value="scopeCurrentYear">Este Ano</option>
+          <option value="scopeLastYear">Último Ano</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="search">Digite Um Texto</label>
+        <input id="search" formControlName="search" value="" type="text" class=" form-control search"  placeholder="procurar por">
+      </div>
+    </div>
+  
+  
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="limit">Items</label>
+        <select id="limit" formControlName="limit" class="form-control limit">
+          <option>--Selecione--</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="48">48</option>
+          <option value="95">95</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group-material">
+          <label for="status" class="label-material">Sececione Um Status</label>
+          <select id="between" formControlName="status" class="input-material status form-control" placeholder="--Selecione--">
+            <option value="1">Ativo</option>
+            <option value="0">Inativo</option>
+          </select>
+        </div>
+      </div>
+  </form>
