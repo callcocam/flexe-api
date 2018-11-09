@@ -21,8 +21,7 @@ export class CityEditComponent implements OnInit {
     { label: 'Desabilitado Para Uso', value: '0' }
   ]
 
-  constructor(private formBuilder: FormBuilder,
-    public notificationService: NotificationService,
+  constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
     private service: ResourcesService,
     private alert: SnotifyService) { }

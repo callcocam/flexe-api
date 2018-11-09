@@ -73,4 +73,4 @@ export class CompanieCreateComponent implements OnInit {
       })
   }
 
-}}
+}
