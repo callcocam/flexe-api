@@ -11,7 +11,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
-
+import * as moment from 'moment';
 @Component({
   selector: 'call-user-edit',
   templateUrl: './user-edit.component.html',
@@ -22,7 +22,20 @@ export class UserEditComponent implements OnInit {
   formGroup: FormGroup
 
 
+  public navs = [
+    {index:'address',label:"Endereços"},
+    {index:'document',label:"Documentos"},
+    {index:'contact',label:"Contatos"},
+    {index:'soscial',label:"Social"},
+  ]
+
   file: File
+
+  public roles
+
+  public user
+
+  public roleId
 
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
@@ -104,7 +117,12 @@ export class UserEditComponent implements OnInit {
           this.formGroup.get('description').setValue(response.description)
           this.formGroup.get('status').setValue(response.status)
           this.formGroup.get('created_at').setValue(response.created_at)
-          this.formGroup.get('updated_at').setValue(response.updated_at)
+          this.formGroup.get('updated_at').setValue(moment().format('DD/MM/YYYY HH:mm:ss'))
+
+          this.user = response
+
+          this.roles = response
+          this.roleId = response.role_id
         },
         error => {
 
@@ -114,6 +132,14 @@ export class UserEditComponent implements OnInit {
     }
 
   }
+
+
+  onSelectRole(event) {
+
+    this.formGroup.get('role_id').setValue(event)
+
+  }
+
 
   onSubmit(value) {
 

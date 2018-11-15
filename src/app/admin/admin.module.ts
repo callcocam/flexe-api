@@ -8,14 +8,14 @@ import {SidebarComponent} from '../content/sidebar.component';
 import {FooterComponent} from '../content/footer.component';
 import {DashboardComponent} from '../content/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
         OperationalModule,
         SharedModule,
-        AppRoutingModule
+        RouterModule
     ],
     declarations: [
         ContentComponent,

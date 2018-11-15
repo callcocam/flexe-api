@@ -25,12 +25,17 @@
             "styles": [
               "node_modules/vali-admin/docs/css/main.css",
               "node_modules/ng-snotify/styles/material.css",
+              "node_modules/bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css",
+              "node_modules/select2/dist/css/select2.min.css",
+              "node_modules/select2-theme-bootstrap4/dist/select2-bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/vali-admin/docs/js/popper.min.js",
               "node_modules/vali-admin/docs/js/bootstrap.min.js",
+              "node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js",
+              "node_modules/select2/dist/js/select2.min.js",
               "node_modules/vali-admin/docs/js/main.js"
             ]
           },

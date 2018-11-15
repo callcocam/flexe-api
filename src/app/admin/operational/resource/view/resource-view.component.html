@@ -1,0 +1,19 @@
+<h1>Visualizar Resource</h1>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <td>{{ resource.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+			<td>{{ resource.nome }}</td>
+		</tr>
+    </table>
+	<div class="text-center">
+		<a class="btn btn-default" [routerLink]="['/resources']">
+			Voltar
+		</a>
+	</div>
+</div>

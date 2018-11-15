@@ -11,6 +11,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
+import * as moment from 'moment';
 
 @Component({
   selector: 'call-companie-edit',
@@ -21,6 +22,16 @@ export class CompanieEditComponent implements OnInit {
 
   formGroup: FormGroup
 
+  public companie
+
+  file: File
+
+  public navs = [
+    {index:'address',label:"Endereços"},
+    {index:'document',label:"Documentos"},
+    {index:'contact',label:"Contatos"},
+    {index:'soscial',label:"Social"},
+  ]
 
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
@@ -33,14 +44,23 @@ export class CompanieEditComponent implements OnInit {
 
       id: new FormControl(''),
 
+      cover: new FormControl(''),
+
+      alias: new FormControl(''),
+      
+      description: new FormControl(''),
+
       name: new FormControl('', {
 
         validators: [Validators.required]
 
-	  }),
+    }), 
+      type: new FormControl(''),
 	  
 	  //Aqui vai os outros campos 
 	  
+      status: new FormControl(''),
+
       created_at: new FormControl('', {
 
         validators: [Validators.required]
@@ -61,18 +81,25 @@ export class CompanieEditComponent implements OnInit {
   getItem() {
 
     let id = this.activateRoute.snapshot.params['id'];
-
-    console.log(id)
+    
     if(id){
       this.service.path = '/companie';
 
       this.service.edit(id).subscribe(
         response => {
-		  this.formGroup.get('id').setValue(response.id)
-		  //Aqui vai os outros campos 
+          this.formGroup.get('id').setValue(response.id)
+          //Aqui vai os outros campos 
+          this.formGroup.get('type').setValue(response.type)
+          this.formGroup.get('alias').setValue(response.alias)
+          this.formGroup.get('name').setValue(response.name)
+          this.formGroup.get('cover').setValue(response.cover)
+          this.formGroup.get('description').setValue(response.description)
           this.formGroup.get('status').setValue(response.status)
           this.formGroup.get('created_at').setValue(response.created_at)
-          this.formGroup.get('updated_at').setValue(response.updated_at)
+          this.formGroup.get('updated_at').setValue(moment().format('DD/MM/YYYY HH:mm:ss'))
+
+          this.companie = response
+
         },
         error => {
   
@@ -83,9 +110,16 @@ export class CompanieEditComponent implements OnInit {
     
   }
 
+  SelectedFile(event){
+
+     this.file = event
+
+  }
   onSubmit(value) {
 
-    this.service.post(value).subscribe(response => {
+    this.service.path = '/companie';
+
+    this.service.post(value,this.file).subscribe(response => {
 
       this.alert.success(response.error)
 

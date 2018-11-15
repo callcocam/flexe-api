@@ -17,6 +17,8 @@ import { SnotifyService } from 'ng-snotify';
   styleUrls: ['./#MODULO#-view.component.css']
 })
 export class #MODULO_CAP#ViewComponent implements OnInit {
+  
+  public #MODULO#
 
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,

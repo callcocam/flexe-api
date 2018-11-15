@@ -1,49 +1,79 @@
 <main class="app-content">
-    <app-breadcrumb page="Companie" description="Editar Companie"></app-breadcrumb>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="tile">
-          <h3 class="tile-title">Companie</h3>
-          <div class="tile-body">
-            <form class="form-horizontal" [formGroup]="formGroup" novalidate>
-              <app-input-hidden>
-                <input formControlName="id" type="hidden">
-              </app-input-hidden>
-              <app-input-hidden>
-                <input formControlName="alias" type="hidden">
-              </app-input-hidden>
-               
-              <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
-                <input formControlName="created_at" class="form-control col-md-6 col-xs-12" type="text" placeholder="Criado Em">
-              </app-input-inline>
-  
-              <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
-                <input formControlName="updated_at" class="form-control col-md-6 col-xs-12" type="text" placeholder="Atualizado Em">
-              </app-input-inline>
-  
-              <div class="form-group row">
-                <div class="col-md-8 col-md-offset-3">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar o
-                      uso
-                    </label>
-                  </div>
+  <app-breadcrumb page="Empresa" description="Editar Empresa"></app-breadcrumb>
+  <app-tabs [navs]="navs" title="Editar Empresa">
+    <div class="tab-pane fade active show" id="home">
+        <form class="form-horizontal mt-2" [formGroup]="formGroup" novalidate>
+            <app-input-hidden>
+              <input formControlName="id" type="hidden">
+            </app-input-hidden>
+            <app-input-hidden>
+              <input formControlName="alias" type="hidden">
+            </app-input-hidden>
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">MATRIZ/FILIAL</label>
+              <div class="col-md-8">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" formControlName="type" type="checkbox">Marcar para habilitar
+                    como MATRIZ
+                  </label>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="tile-footer">
-            <div class="row">
+            </div>
+
+            <app-input-inline errorMessage="Campo obrigatório" label="Nome Da Empresa">
+              <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Nome Da Empresa">
+            </app-input-inline>
+
+            <app-file-upload errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
+              <input type="hidden" formControlName="cover">
+            </app-file-upload>
+
+            <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Da Empresa">
+              <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+            </app-input-inline>
+
+            <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
+              <input formControlName="created_at" readonly="true" class="form-control col-md-6 col-xs-12" type="text"
+                placeholder="Criado Em" appMask="99/99/9999 99:99:99">
+            </app-input-inline>
+
+            <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
+              <input formControlName="updated_at" readonly="true" class="form-control col-md-6 col-xs-12" type="text"
+                placeholder="Atualizado Em" appMask="99/99/9999 99:99:99">
+            </app-input-inline>
+
+            <div class="form-group row">
               <div class="col-md-8 col-md-offset-3">
-                <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i
-                    class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger"
-                  [routerLink]="['/admin/companies']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar Para A Lista</a>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
+                    o
+                    uso
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearix"></div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                  <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>&nbsp;&nbsp;&nbsp;
+                  <a class="btn btn-danger" [routerLink]="['/admin/empresa']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar Para A Lista</a>
+                </div>
+              </div>
+          </form>
     </div>
-  </main>
+    <div class="tab-pane fade" id="contact">
+      <call-contact *ngIf="companie" table="companies" [parent]="companie"></call-contact>
+    </div>
+    <div class="tab-pane fade" id="soscial">
+      <app-social *ngIf="companie" table="companies" [parent]="companie"></app-social>
+    </div>
+    <div class="tab-pane fade" id="document">
+      <app-document *ngIf="companie" table="companies" [parent]="companie"></app-document>
+    </div>
+    <div class="tab-pane fade" id="address">
+        <app-address *ngIf="companie" table="companies" [parent]="companie"></app-address>
+    </div>
+  </app-tabs>
+</main>

@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            Lista De Contatos
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="contct-table" class="table contct-table">
+            <thead>
+              <tr>
+                <td colspan="4">
+                  <form class="row" (ngSubmit)="onSubmit()"  #contactForm="ngForm">
+                        <input type="hidden" id="id" [(ngModel)]="contact.id" name="id">
+                        <input type="hidden" id="parent" [(ngModel)]="contact.parent" name="parent">
+                        <input type="hidden" id="assets" [(ngModel)]="contact.assets" name="assets">
+                        <input type="hidden" id="status" [(ngModel)]="contact.status" name="status">
+                    <div class="form-group col-md-3">
+                      <label class="control-label">Nome</label>
+                      <select class="form-control input-sm" id="name" required [(ngModel)]="contact.name" name="name"  #name="ngModel">
+                        <option value="Fixo">Fone Fixo</option>
+                        <option value="Fone Fax">Fone Fax</option>
+                        <option value="Celular">Fone Celular</option>
+                        <option value="Celular/Watts Zap">Celular/Watts Zap</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label class="control-label">Valor</label>
+                      <input type="text" class="form-control input-sm" id="value" required [(ngModel)]="contact.value" name="value">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label class="control-label">Icone</label>
+                      <input type="text" class="form-control input-sm" id="icone" [(ngModel)]="contact.icone" name="icone">
+                    </div>
+                    <div class="form-group col-md-3 align-self-end">
+                      <button class="navigation btn-ajax btn btn-success" title="Adicionar Novo"  [disabled]="!contactForm.form.valid"><i class="fa fa-plus"></i> Enviar Dados</button>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Identificador
+                </th>
+                <th>
+                  Valor
+                </th>
+                <th>
+                  Icone
+                </th>
+                <th>
+                  #
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let record of records">
+                <td>
+                  {{record.name}}
+                </td>
+                <td>
+                  {{record.value}}
+                </td>
+                <td>
+                  {{record.icone}}
+                </td>
+                <td>
+                  <button class="btn btn-primary btn-sm" title="Editar" (click)="edit(record)"><i class="fa fa-plus"></i>
+                    Editar</button>
+                  |
+                  <button class="btn btn-danger btn-sm" title="Excluir" (click)="delete(record.id)"><i class="fa fa-trash"></i>
+                    Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot *ngIf="!records">
+              <tr>
+                <td>
+                  <h3>Sua Pesquisa Não Retornou Nenhum Resultado</h3>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>

@@ -1,74 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ResourceComponent } from './resource/resource.component';
-import { PrivilegieComponent } from './privilegie/privilegie.component';
-import { RoleComponent } from './role/role.component';
-import { BreadcrumbComponent } from '../utils/breadcrumb/breadcrumb.component';
 import { SharedModule } from '../../shared/shared.module';
 import { CityComponent } from './city/city.component';
 import { CityEditComponent } from './city/city-edit/city-edit.component';
 import { CityDeleteComponent } from './city/city-delete/city-delete.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { RoleEditComponent } from './role/role-edit/role-edit.component';
-import { RoleDeleteComponent } from './role/role-delete/role-delete.component';
-import { ResourceEditComponent } from './resource/resource-edit/resource-edit.component';
-import { ResourceDeleteComponent } from './resource/resource-delete/resource-delete.component';
-import { PrivilegieDeleteComponent } from './privilegie/privilegie-delete/privilegie-delete.component';
-import { PrivilegieEditComponent } from './privilegie/privilegie-edit/privilegie-edit.component';
-
-import {
-    CompanieCreateComponent,
-    CompanieEditComponent,
-    CompanieComponent,
-    CompanieViewComponent,
-    CompanieDeleteComponent
-} from './companie';
 
 
-import {
-    UserComponent,
-    UserCreateComponent,
-    UserEditComponent,
-    UserDeleteComponent,
-    UserViewComponent
-} from './user';
-
+import { RouterModule } from '@angular/router';
+import { CompanieModule } from './companie/companie.module';
+import { PrivilegieModule } from './privilegie/privilegie.module';
+import { RoleModule } from './role/role.module';
+import { ResourceModule } from './resource/resource.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        AppRoutingModule
+        RouterModule,
+        CompanieModule,
+        PrivilegieModule,
+        RoleModule,
+        ResourceModule,
+        UserModule
     ],
     declarations: [
-        BreadcrumbComponent,
-        RoleComponent,
-        ResourceComponent,
-        PrivilegieComponent,
-        CompanieCreateComponent,
-        CompanieEditComponent,
-        CompanieComponent,
-        CompanieViewComponent,
-        CompanieDeleteComponent,
-        UserCreateComponent,
-        UserEditComponent,
-        UserDeleteComponent,
-        UserViewComponent,
-        UserComponent,
         CityComponent,
         CityEditComponent,
-        CityDeleteComponent,
-        RoleEditComponent,
-        RoleDeleteComponent,
-        ResourceEditComponent,
-        ResourceDeleteComponent,
-        PrivilegieDeleteComponent,
-        PrivilegieEditComponent
+        CityDeleteComponent
     ],
-    exports: [
-        BreadcrumbComponent
-    ],
+    exports: [],
     providers: []
 })
 export class OperationalModule { }

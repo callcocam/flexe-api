@@ -1,0 +1,67 @@
+<main class="app-content">
+  <app-breadcrumb page="Role" description="Editar Role"></app-breadcrumb>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <h3 class="tile-title">Role</h3>
+        <div class="tile-body">
+          <form class="form-horizontal" [formGroup]="formGroup" novalidate>
+            <app-input-hidden>
+              <input formControlName="id" type="hidden">
+            </app-input-hidden>
+            <app-input-hidden>
+              <input formControlName="alias" type="hidden">
+            </app-input-hidden>
+            <app-input-inline errorMessage="Campo obrigatório" label="Titulo">
+              <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Titulo">
+            </app-input-inline>
+            <app-select2 *ngIf="roles" resource="/role" label="Selecione um nivel" [value]="dataRoles" (selected)="onSelect($event)">
+              <input formControlName="role_id" type="hidden">
+            </app-select2>
+            <div class="form-group row">
+              <div class="col-md-3  col-xs-12">Super Admin</div>
+              <div class="col-md-8  col-xs-12">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" formControlName="is_admin" type="checkbox">Marcar para habilitar
+                    como super-admin
+                  </label>
+                </div>
+              </div>
+            </div>
+            <app-input-inline errorMessage="Campo obrigatório" label="Descrição">
+              <textarea formControlName="description" class="form-control col-md-6 col-xs-12" placeholder="Descrição"></textarea>
+            </app-input-inline>
+            <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
+              <input formControlName="created_at" class="form-control col-md-6 col-xs-12" type="text" placeholder="Criado Em" appMask="99/99/9999 99:99:99">
+            </app-input-inline>
+            <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
+              <input formControlName="updated_at" class="form-control col-md-6 col-xs-12" type="text" placeholder="Atualizado Em" appMask="99/99/9999 99:99:99">
+            </app-input-inline>
+            <div class="form-group row">
+              <div class="col-md-3  col-xs-12">Situação</div>
+              <div class="col-md-8  col-xs-12">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar o
+                    uso
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tile-footer">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-3">
+              <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i
+                  class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger"
+                [routerLink]="['/admin/roles']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar Para A Lista</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearix"></div>
+  </div>
+</main>

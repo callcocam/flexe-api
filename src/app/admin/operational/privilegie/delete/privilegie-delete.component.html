@@ -1,0 +1,34 @@
+<main class="app-content">
+    <app-breadcrumb page="Privilegie" action="Excluir" route="admin/privilegios" description="Excluir A Privilegie: {{data?.name}}"></app-breadcrumb>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="confirm">
+          <div class="row">
+            <div class="col-12">
+              <form class="text-left form-validate">
+                <div class="card text-center">
+                  <div class="card-header"> <h5 class="card-title">{{data?.name}}</h5> </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Atenção essa operaração vai excluir o registro definitivamente de sua base de dados!!</h5>
+                    <p class="card-text"> </p>
+                    <div class="spinner">
+                      <div class="rect1"></div>
+                      <div class="rect2"></div>
+                      <div class="rect3"></div>
+                      <div class="rect4"></div>
+                      <div class="rect5"></div>
+                    </div>                  
+                    <button class="btn btn-danger" type="button" (click)="deleteFrom()"> Deseja Realmente Excluir<i class="load fa fa-spinner fa-spin" style="display: none"></i>
+                    </button> 
+                    <a title="Cliente"  routerLink="/admin/privilegios" class="btn btn-primary"><i class="fa fa-reply"></i> Voltar voltar para a lista</a>
+                  </div>
+                  <div class="card-footer text-muted"> {{data?.created_at}} </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

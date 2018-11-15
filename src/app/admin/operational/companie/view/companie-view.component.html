@@ -1,19 +1,4 @@
-<h1>Visualizar Companie</h1>
-
-<div>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <td> gfdgd</td>
-        </tr>
-        <tr>
-            <th>Nome</th>
-			<td>fgdg</td>
-		</tr>
-    </table>
-	<div class="text-center">
-		<a class="btn btn-default" [routerLink]="['/companies']">
-			Voltar
-		</a>
-	</div>
-</div>
+<main class="app-content">
+    <app-breadcrumb page="Companies" description="Lista De Companies"></app-breadcrumb>
+      <ct-table [resource]="'/companie'" [routeAdd]="'/admin/empresa/cadastrar'"></ct-table>  
+</main>

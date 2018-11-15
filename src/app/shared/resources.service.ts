@@ -14,7 +14,11 @@ export class ResourcesService {
 
     constructor(
         private http: HttpClient,
-        private authService: AuthService) { }
+        private authService: AuthService) { 
+
+            this.params = new HttpParams()
+
+        }
 
     public baseUrl = MEAT_API;
 
@@ -39,6 +43,18 @@ export class ResourcesService {
 
     }
 
+    parents(searchTerm = null) {
+
+        if (searchTerm) {
+            
+            this.params = new HttpParams()
+                .append('assets', searchTerm.assets)
+                .append('parent', searchTerm.parent)
+        }
+        return this;
+
+    }
+
     list(): Observable<any> {
 
         return this.http.get(
@@ -58,6 +74,15 @@ export class ResourcesService {
     view(id?: any): Observable<any> {
 
         return this.http.get(`${this.baseUrl}${this.path}/${id}`);
+
+    }
+
+    select2(index:string,text:string,id?:string): Observable<any> {
+
+        if(id){
+            return this.http.get(`${this.baseUrl}${this.path}/select/${index}/${text}/${id}`);
+        }
+        return this.http.get(`${this.baseUrl}${this.path}/select/${index}/${text}`);
 
     }
 

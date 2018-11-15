@@ -1,20 +1,26 @@
+/**
+ * Componente de listagem de resources.
+ *
+ * @author Claudio Campos <contato@sigasmart.com.br>
+ * @since 0.0.3
+ */
+
 import { Component, OnInit } from '@angular/core';
-import {ResourcesService} from '../../../shared/resources.service';
-import { Settings } from 'src/app/shared/settings.model';
+import { ResourcesService } from '../../../shared/resources.service';
+import { SnotifyService, Snotify } from 'ng-snotify';
 
 @Component({
-  selector: 'app-resource',
+  selector: 'call-resource',
   templateUrl: './resource.component.html'
 })
 export class ResourceComponent implements OnInit {
 
-  source:Settings[];
 
-  constructor(private service:ResourcesService) { }
+  constructor(private service: ResourcesService, private alert: SnotifyService) { }
 
   ngOnInit() {
 
-  	this.service.path = '/resource'
+    this.service.path = '/resource'
 
   }
 

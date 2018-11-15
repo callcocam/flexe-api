@@ -11,6 +11,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
+import * as moment from 'moment';
 
 @Component({
   selector: 'call-#MODULO#-edit',
@@ -68,11 +69,11 @@ export class #MODULO_CAP#EditComponent implements OnInit {
 
       this.service.edit(id).subscribe(
         response => {
-		  this.formGroup.get('id').setValue(response.id)
-		  //Aqui vai os outros campos 
+          this.formGroup.get('id').setValue(response.id)
+          //Aqui vai os outros campos 
           this.formGroup.get('status').setValue(response.status)
           this.formGroup.get('created_at').setValue(response.created_at)
-          this.formGroup.get('updated_at').setValue(response.updated_at)
+          this.formGroup.get('updated_at').setValue(moment().format('DD/MM/YYYY HH:mm:ss'))
         },
         error => {
   

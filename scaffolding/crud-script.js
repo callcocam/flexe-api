@@ -53,19 +53,21 @@ prompt.get(schema, function (err, input) {
   console.log('Copiando os arquivos...');
   var pathOrigem = path.join(__dirname, 'source');
   var pathDestino = pathOrigem.replace(path.join('scaffolding/source'),
-    path.join('src/app/admin/operational/' + modulo));
+    path.join('src/app/admin/operational/companie/edit/' + modulo));
   //copia os arquivos para o projeto
   copydir.sync(pathOrigem, pathDestino);
   //renomeia os arquivos
   fs.renameSync(path.join(pathDestino, '/usuario-routing.module.ts'),
     path.join(pathDestino, modulo + '-routing.module.ts'));
+  fs.renameSync(path.join(pathDestino, '/usuario.module.ts'),
+    path.join(pathDestino, modulo + '.module.ts'));
   //create
-  fs.renameSync(path.join(pathDestino, '/create/usuario-create.component.css'),
+  /*fs.renameSync(path.join(pathDestino, '/create/usuario-create.component.css'),
     path.join(pathDestino, '/create/' + modulo + '-create.component.css'));
   fs.renameSync(path.join(pathDestino, '/create/usuario-create.component.html'),
     path.join(pathDestino, '/create/' + modulo + '-create.component.html'));
   fs.renameSync(path.join(pathDestino, '/create/usuario-create.component.ts'),
-    path.join(pathDestino, '/create/' + modulo + '-create.component.ts'));
+    path.join(pathDestino, '/create/' + modulo + '-create.component.ts'));*/
 
   //delete
   fs.renameSync(path.join(pathDestino, '/delete/usuario-delete.component.css'),

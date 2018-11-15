@@ -1,0 +1,19 @@
+<h1>Visualizar Role</h1>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <td>{{ role.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+			<td>{{ role.nome }}</td>
+		</tr>
+    </table>
+	<div class="text-center">
+		<a class="btn btn-default" [routerLink]="['/roles']">
+			Voltar
+		</a>
+	</div>
+</div>

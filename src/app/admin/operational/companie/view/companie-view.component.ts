@@ -18,27 +18,11 @@ import { SnotifyService } from 'ng-snotify';
 })
 export class CompanieViewComponent implements OnInit {
 
-  constructor(public notificationService: NotificationService,
-    private activateRoute: ActivatedRoute,
-    private service: ResourcesService,
-    private alert: SnotifyService) { }
+  constructor(private service: ResourcesService, private alert: SnotifyService) { }
 
   ngOnInit() {
 
-	
-    let id = this.activateRoute.snapshot.params['id'];
+    this.service.path = '/companie'
 
-      this.service.path = '/companie';
-
-      this.service.view(id).subscribe(
-        response => {
-		
-        },
-        error => {
-  
-          this.alert.error(`ERROR: não foi possivel concluir a operação!`)
-    
-        })
-	
   }
 }

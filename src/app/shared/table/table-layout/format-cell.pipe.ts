@@ -16,7 +16,7 @@ export class FormatCellPipe implements PipeTransform {
         }
          
         if (format === 'date') {
-            return this.datePipe.transform(value, 'medium');
+            return value;
         }
         
         return value;

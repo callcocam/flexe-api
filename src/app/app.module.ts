@@ -14,6 +14,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { Interceptor } from './shared/services/interceptor.module';
+import { RouterModule } from '@angular/router';
 registerLocaleData(locatePt, 'pt')
 
 ToastDefaults.toast.position = 'centerTop'
@@ -25,6 +26,7 @@ ToastDefaults.toast.position = 'centerTop'
     imports: [
         BrowserModule,
         AppRoutingModule,
+        RouterModule,
         AdminModule,
         AuthModule,
         SharedModule.forRoot(),
