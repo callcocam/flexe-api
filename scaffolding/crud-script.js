@@ -53,7 +53,7 @@ prompt.get(schema, function (err, input) {
   console.log('Copiando os arquivos...');
   var pathOrigem = path.join(__dirname, 'source');
   var pathDestino = pathOrigem.replace(path.join('scaffolding/source'),
-    path.join('src/app/admin/operational/companie/edit/' + modulo));
+    path.join('src/app/admin/obras/' + modulo));
   //copia os arquivos para o projeto
   copydir.sync(pathOrigem, pathDestino);
   //renomeia os arquivos

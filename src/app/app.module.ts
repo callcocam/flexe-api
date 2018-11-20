@@ -15,6 +15,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { Interceptor } from './shared/services/interceptor.module';
 import { RouterModule } from '@angular/router';
+import { HomeModule } from './home/home.module';
 registerLocaleData(locatePt, 'pt')
 
 ToastDefaults.toast.position = 'centerTop'
@@ -46,6 +47,7 @@ ToastDefaults.toast.position = 'centerTop'
             thick: false
         }),
         NgProgressHttpModule.forRoot(),
+        HomeModule
     ],
     exports: [
         AdminModule,

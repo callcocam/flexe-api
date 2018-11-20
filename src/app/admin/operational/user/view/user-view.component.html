@@ -1,17 +1,4 @@
-<h1>Visualizar User</h1>
-
-<div>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <td>yutyut</td>
-        </tr>
-        <tr>
-            <th>Nome</th>
-			<td>utu</td>
-		</tr>
-    </table>
-	<div class="text-center">
-		
-	</div>
-</div>
+<main class="app-content">
+    <app-breadcrumb page="Users" description="Lista De Users"></app-breadcrumb>
+      <ct-table [resource]="'/user'" [routeAdd]="'/admin/usuarios/cadastrar'"></ct-table>	
+  </main>

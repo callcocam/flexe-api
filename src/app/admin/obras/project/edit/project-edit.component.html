@@ -1,0 +1,91 @@
+<main class="app-content">
+  <app-breadcrumb page="Projeto" description="Editar projeto"></app-breadcrumb>
+  <div class="tile mb-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h2 class="mb-3 line-head" id="navs">Detalhes Do Projeto</h2>
+        </div>
+      </div>
+    </div>
+    <div class="bs-component">
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Projeto</a></li>
+        <li *ngIf="project_id" class="nav-item"><a class="nav-link" data-toggle="tab" href="#contract">Contrato</a></li>
+        <li *ngIf="project_id" class="nav-item"><a class="nav-link" data-toggle="tab" href="#licitation">Licitação</a></li>
+        <li *ngIf="project_id" class="nav-item"><a class="nav-link" data-toggle="tab" href="#executation">Andamento</a></li>
+        <li *ngIf="project_id" class="nav-item"><a class="nav-link" data-toggle="tab" href="#conclusion">Conclusão</a></li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade active show" id="home">
+          <div class="row">
+            <div class="col-md-12">
+              <form class="form-horizontal mt-4" [formGroup]="formGroup" novalidate>
+                <app-input-hidden>
+                  <input formControlName="id" type="hidden">
+                </app-input-hidden>
+                <app-input-hidden>
+                  <input formControlName="alias" type="hidden">
+                </app-input-hidden>
+                <app-input-hidden>
+                  <input formControlName="user_id" type="hidden">
+                </app-input-hidden>
+
+                <app-input-inline errorMessage="Campo obrigatório" label="Nome Da Empresa">
+                  <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Nome Da Empresa">
+                </app-input-inline>
+
+
+                <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Do Projeto">
+                  <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+                </app-input-inline>
+
+                <hr>
+                <app-file-upload-preview [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
+                  <input type="hidden" formControlName="cover">
+                </app-file-upload-preview>
+                <hr>
+                <app-input-hidden>
+                    <input formControlName="created_at" type="hidden">
+                  </app-input-hidden>
+                <app-input-hidden>
+                    <input formControlName="updated_at" type="hidden">
+                  </app-input-hidden>
+                <div class="form-group row">
+                  <div class="col-md-8 col-md-offset-3">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
+                        o
+                        uso do projeto
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i
+                  class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger"
+                [routerLink]="['/admin/projetos']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar Para A
+                Lista</a>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contract">
+          <app-contract *ngIf="project_id" [contract]="contract" [project]="project_id"></app-contract>
+        </div>
+        <div class="tab-pane fade" id="licitation">
+          <app-licitation *ngIf="project_id" [licitacion]="licitacion" [project]="project_id"></app-licitation>
+        </div>
+        <div class="tab-pane fade" id="executation">
+          <app-execution *ngIf="project_id" [executation]="execution" [project]="project_id"></app-execution>
+        </div>
+        <div class="tab-pane fade" id="conclusion">
+          <app-conclusion *ngIf="project_id" [conclusion]="conclusion" [project]="project_id"></app-conclusion>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

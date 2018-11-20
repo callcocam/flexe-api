@@ -6,7 +6,7 @@ export class FilterSerach {
     public _column: string = 'id'
     public _order: string = 'DESC'
     public _limit: string = '1000'
-    public _page: string = '1'
+    public _page: number = 1
     public _search: string = ''
     public _between: string = ''
     public _number: string = '1'
@@ -99,12 +99,12 @@ export class FilterSerach {
     }
 
 
-    set page(page: string) {
+    set page(page: number) {
 
         this._page = page
     }
 
-    get page(): string {
+    get page(): number {
 
         return this._page
 

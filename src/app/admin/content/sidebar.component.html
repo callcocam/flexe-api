@@ -1,0 +1,31 @@
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img style="width: 50px;" class="app-sidebar__user-avatar" [src]="cover" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">{{user.name}}</p>
+          <p class="app-sidebar__user-designation">{{user.role_id}}</p>
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li>
+          <a class="app-menu__item" routerLinkActive="active" [routerLink]="['/admin/dashboard']">
+          <i class="app-menu__icon fa fa-dashboard"></i>
+          <span class="app-menu__label">Dashboard</span>
+        </a>
+        </li>
+        <li class="treeview">
+          <a class="app-menu__item" href="#" data-toggle="treeview">
+          <i class="app-menu__icon fa fa-laptop"></i>
+          <span class="app-menu__label">Operacional</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+          <ul class="treeview-menu">
+            <li *ngFor="let menu of menusOperational">
+              <a class="{{menu.class}}"  routerLinkActive="active" [routerLink]="[menu.route]"><i class="icon fa fa-circle-o"></i> {{menu.name}}</a>
+            </li>
+          </ul>
+        </li>      
+        <li><a class="app-menu__item "  routerLinkActive="active" [routerLink]="['/admin/projetos']"><i class="app-menu__icon fa fa-gears"></i><span class="app-menu__label">Projetos</span></a></li>
+        <li><a class="app-menu__item "  routerLinkActive="active" [routerLink]="['/admin/auth/logout']"><i class="app-menu__icon fa fa-sign-out fa-lg"></i><span class="app-menu__label">Sair</span></a></li>
+      </ul>
+    </aside>

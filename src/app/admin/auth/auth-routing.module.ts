@@ -8,6 +8,8 @@ import {AuthGuestRouterService} from '../../shared/services/auth-guest-router.se
 import {LogoutComponent} from './logout.component';
 import {AuthGuardRouterService} from '../../shared/services/auth-guard-router.service';
 
+import { PageNotFoundComponent } from '../../home/page-not-found/page-not-found.component';
+
 
 const routes: Routes = [
     {
@@ -33,7 +35,9 @@ const routes: Routes = [
                 canActivate: [AuthGuardRouterService]
             }
         ]
+
     }
+    , { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
     imports: [

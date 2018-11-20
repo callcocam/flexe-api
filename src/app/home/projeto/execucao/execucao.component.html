@@ -1,0 +1,7 @@
+<ul class="list-group list-group-flush">
+   <li class="list-group-item"><b>PREVISÃO DE CONCLUSÃO:</b><span class="float-right"> {{ execution?.previsao_conclusao | date:'dd/MM/yyyy' }}</span></li>
+   <li class="list-group-item"><b>DATA DA ÚLTIMA MEDIÇÃO:</b><span class="float-right"> {{ execution?.data_medicao | date:'dd/MM/yyyy' }}</span></li>
+   <li class="list-group-item"><b>PERCENTUAL OBRA/SERVIÇO:</b><span class="float-right"> {{ execution?.percentual }}</span></li>
+   <li class="list-group-item"><b>SITUAÇÃO OBRA/SERVIÇO:</b><span class="float-right"> {{ execution?.status }}</span></li>
+   <li class="list-group-item"><b>DETALHES:</b> {{ execution?.description }}</li>
+</ul>

@@ -6,8 +6,6 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/shared/messages/notification.service';
-import { ActivatedRoute } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
 

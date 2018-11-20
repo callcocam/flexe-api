@@ -3,16 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardRouterService } from './shared/services/auth-guard-router.service';
-import { ContentComponent } from './content/content.component';
-import { DashboardComponent } from './content/dashboard.component';
+import { ContentComponent } from './admin/content/content.component';
+import { DashboardComponent } from './admin/content/dashboard.component';
 import { AboutComponent } from './admin/about/about.component';
 
-// operacionalRoutes.push(...cityRoutes)
-// operacionalRoutes.push(...companieRoutes)
-// operacionalRoutes.push(...roleRoutes)
-// operacionalRoutes.push(...resourceRoutes)
-// operacionalRoutes.push(...prvilegieRoutes)
-// operacionalRoutes.push(...userRoutes)
+
 
 import {
     CompanieEditComponent,
@@ -21,60 +16,112 @@ import {
     CompanieDeleteComponent
 } from './admin/operational/companie';
 
-
-import {
-    RoleComponent,
-    RoleEditComponent,
-    RoleDeleteComponent,
-    RoleViewComponent
-} from './admin/operational/role';
-
-
-import {
-    PrivilegieComponent,
-    PrivilegieEditComponent,
-    PrivilegieDeleteComponent,
-    PrivilegieViewComponent
-} from './admin/operational/privilegie';
-
-import {
-    ResourceComponent,
-    ResourceEditComponent,
-    ResourceDeleteComponent,
-    ResourceViewComponent
-} from './admin/operational/resource';
-
-
 import {
     UserComponent,
     UserEditComponent,
     UserDeleteComponent,
     UserViewComponent
 } from './admin/operational/user';
-
 import {
-    CityComponent,
-    CityEditComponent,
-    CityDeleteComponent
-} from './admin/operational/city';
+    ProjectComponent,
+    ProjectViewComponent,
+    ProjectEditComponent,
+    ProjectDeleteComponent
+} from './admin/obras/project';
+import { ProjetoComponent } from './home/projeto/projeto.component';
+import { ProjetosComponent } from './home/projetos/projetos.component';
+import { HomeComponent } from './home/home.component';
+import { ContratoComponent } from './home/projeto/contrato/contrato.component';
+import { LicitacaoComponent } from './home/projeto/licitacao/licitacao.component';
+import { ExecucaoComponent } from './home/projeto/execucao/execucao.component';
+import { ConclusaoComponent } from './home/projeto/conclusao/conclusao.component';
+import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+import { ConcluidosComponent } from './home/projetos/concluidos/concluidos.component';
+import { RelatorioComponent } from './home/projeto/relatorio/relatorio.component';
 
+import {AuthComponent} from './admin/auth/auth.component';
+import {LoginComponent} from './admin/auth/login.component';
+import {ForgotComponent} from './admin/auth/forgot.component';
+import {AuthGuestRouterService} from './shared/services/auth-guest-router.service';
+import {LogoutComponent} from './admin/auth/logout.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/admin', pathMatch: 'full' },
+    {
+        path: '',
+        component: HomeComponent,
+        children: [
+            { path: '', redirectTo: 'projetos', pathMatch: 'full' },
+            {
+                path: 'projetos',
+                component: ProjetosComponent,
+                data: {
+                    title: 'Visualizar Projeto'
+                },
+                 children: [
+                 ]
+            },
+            {
+                path: 'concluidos',
+                component: ConcluidosComponent,
+                data: {
+                    title: 'Visualizar Concludos'
+                }
+            },
+            {
+                path: 'projeto/:id',
+                component: ProjetoComponent,
+                data: {
+                    title: 'Visualizar Projeto'
+                },
+                children: [
+                    { path: '', redirectTo: 'contrato', pathMatch: 'full' },
+                    {
+                        path: 'contrato',
+                        component: ContratoComponent,
+                        data: {
+                            title: 'Contrato'
+                        }
+                    },
+                    {
+                        path: 'licitacao',
+                        component: LicitacaoComponent,
+                        data: {
+                            title: 'Licitação'
+                        }
+                    },
+                    {
+                        path: 'execucao',
+                        component: ExecucaoComponent,
+                        data: {
+                            title: 'Execução'
+                        }
+                    },
+                    {
+                        path: 'conclusao',
+                        component: ConclusaoComponent,
+                        data: {
+                            title: 'Licitação'
+                        }
+                    },
+                    {
+                        path: 'relatorio',
+                        component: RelatorioComponent,
+                        data: {
+                            title: 'Relatótrio'
+                        }
+                    },
+                ]
+            }
+        ]
+    },
+
     {
         path: 'admin', component: ContentComponent,
         canActivate: [AuthGuardRouterService],
         children: [
-            {
-                path: 'dashboard',
-                component: DashboardComponent,
-                canActivate: [AuthGuardRouterService]
-            },
-            {
-                path: 'sobre',
-                component: AboutComponent,
-                canActivate: [AuthGuardRouterService]
-            },
+            { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
+            {path: 'dashboard',component: DashboardComponent,canActivate: [AuthGuardRouterService]},
+            { path: 'sobre',component: AboutComponent,canActivate: [AuthGuardRouterService]},
             //Companias
             {
                 path: 'empresa',
@@ -82,31 +129,11 @@ const routes: Routes = [
                 canActivate: [AuthGuardRouterService],
                 children: [
                     { path: '', redirectTo: 'listar', pathMatch: 'full' },
-                    {
-                        path: 'listar',
-                        component: CompanieViewComponent,
-                        canActivate: [AuthGuardRouterService],
-                        data: {
-                            title: 'Cadastrar Empresa'
-                        }
+                        {path: 'listar',component: CompanieViewComponent,canActivate: [AuthGuardRouterService],data: {title: 'Cadastrar Empresa'}
                     },
-                    {
-                        path: 'cadastrar',
-                        component: CompanieEditComponent,
-                        canActivate: [AuthGuardRouterService],
-                        data: {
-                            title: 'Cadastrar Empresa'
-                        }
+                        {path: 'cadastrar',component: CompanieEditComponent,canActivate: [AuthGuardRouterService],data: {title: 'Cadastrar Empresa'}
                     },
-                    {
-                        path: ':id/editar',
-                        component: CompanieEditComponent,
-                        canActivate: [AuthGuardRouterService],
-                        data: {
-                            title: 'Editar Empresa'
-                        },
-                        children: [  ]
-                    },
+                    {path: ':id/editar',component: CompanieEditComponent,canActivate: [AuthGuardRouterService],data: {title: 'Editar Empresa'},},
                     {
                         path: ':id/excluir',
                         component: CompanieDeleteComponent,
@@ -115,193 +142,90 @@ const routes: Routes = [
                             title: 'Excluir Empresa'
                         }
                     },
-                     //empres contact
+                    //empres contact
                 ]
             },
-
-            //Role
             {
-                path: 'roles',
-                component: RoleComponent,
-                canActivate: [AuthGuardRouterService]
-            },
-            {
-                path: 'roles/cadastrar',
-                component: RoleEditComponent,
+                path: 'projetos',
+                component: ProjectComponent,
                 canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cadastrar Role'
-                }
+                children: [
+                    { path: '', redirectTo: 'listar', pathMatch: 'full' },
+                    {
+                        path: 'listar',
+                        component: ProjectViewComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Cadastrar Project'
+                        }
+                    },
+                    {
+                        path: 'cadastrar',
+                        component: ProjectEditComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Cadastrar Project'
+                        }
+                    },
+                    {
+                        path: ':id/editar',
+                        component: ProjectEditComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Editar Project'
+                        }
+                    },
+                    {
+                        path: ':id/excluir',
+                        component: ProjectDeleteComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Excluir Project'
+                        }
+                    }
+                    //empres contact
+                ]
             },
-            {
-                path: 'roles/:id/editar',
-                component: RoleEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Editar Role'
-                }
-            },
-            {
-                path: 'roles/:id/excluir',
-                component: RoleDeleteComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Excluir Role'
-                }
-            },
-            {
-                path: 'roles/:id/view',
-                component: RoleViewComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Visualizar Role'
-                }
-            },
-            //Resource
-            {
-                path: 'resources',
-                component: ResourceComponent,
-                canActivate: [AuthGuardRouterService]
-            },
-            {
-                path: 'resources/cadastrar',
-                component: ResourceEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cadastrar Resource'
-                }
-            },
-            {
-                path: 'resources/:id/editar',
-                component: ResourceEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Editar Resource'
-                }
-            },
-            {
-                path: 'resources/:id/excluir',
-                component: ResourceDeleteComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Excluir Resource'
-                }
-            },
-            {
-                path: 'resources/:id/view',
-                component: ResourceViewComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Visualizar Resource'
-                }
-            },
-            {
-                path: 'privilegios',
-                component: PrivilegieComponent,
-                canActivate: [AuthGuardRouterService]
-            },
-            {
-                path: 'privilegios/cadastrar',
-                component: PrivilegieEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cadastrar Privilegie'
-                }
-            },
-            {
-                path: 'privilegios/:id/editar',
-                component: PrivilegieEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Editar Privilegie'
-                }
-            },
-            {
-                path: 'privilegios/:id/excluir',
-                component: PrivilegieDeleteComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Excluir Privilegie'
-                }
-            },
-            {
-                path: 'privilegios/:id/view',
-                component: PrivilegieViewComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Visualizar Privilegie'
-                }
-            },
-            //usuarios
             {
                 path: 'usuarios',
                 component: UserComponent,
-                canActivate: [AuthGuardRouterService]
-            },
-            {
-                path: 'usuarios/cadastrar',
-                component: UserEditComponent,
                 canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cadastrar User'
-                }
-            },
-            {
-                path: 'usuarios/:id/editar',
-                component: UserEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Editar User'
-                }
-            },
-            {
-                path: 'usuarios/:id/excluir',
-                component: UserDeleteComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Excluir User'
-                }
-            },
-            {
-                path: 'usuarios/:id/view',
-                component: UserViewComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Visualizar User'
-                }
-            },
-            //Cidades
-            {
-                path: 'cidades', component: CityComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cidades'
-                }
-            },
-            {
-                path: 'cidades/cadastrar',
-                component: CityEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Cadastrar Cidade'
-                }
-            },
-            {
-                path: 'cidades/:id/editar',
-                component: CityEditComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Editar Cidade'
-                }
-            },
-
-            {
-                path: 'cidades/:id/excluir',
-                component: CityDeleteComponent,
-                canActivate: [AuthGuardRouterService],
-                data: {
-                    title: 'Excluir Cidade'
-                }
+                children: [
+                    { path: '', redirectTo: 'listar', pathMatch: 'full' },
+                    //usuarios
+                    {
+                        path: 'listar',
+                        component: UserViewComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Listar Usuários'
+                        }
+                    },
+                    {
+                        path: 'cadastrar',
+                        component: UserEditComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Cadastrar Usuários'
+                        }
+                    },
+                    {
+                        path: ':id/editar',
+                        component: UserEditComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Editar Usuários'
+                        }
+                    },
+                    {
+                        path: ':id/excluir',
+                        component: UserDeleteComponent,
+                        canActivate: [AuthGuardRouterService],
+                        data: {
+                            title: 'Excluir Usuários'
+                        }
+                    }
+                ]
             }
         ]
     }

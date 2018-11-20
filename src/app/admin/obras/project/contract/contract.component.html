@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal mt-4" [formGroup]="formContract" (change)="validate()" novalidate>
+      <app-input-hidden>
+        <input formControlName="id" type="hidden">
+      </app-input-hidden>
+      <app-input-hidden>
+        <input formControlName="project_id" type="hidden">
+      </app-input-hidden>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="CONVÊNIO/CONTRATO DE REPASSE Nº">
+        <input formControlName="convenio" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="CONVÊNIO SIAFI Nº">
+        <input formControlName="convenio_siafi" class="form-control col-md-6 col-xs-12" type="text" placeholder="000000">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="PROPOSTA SICONV Nº">
+        <input formControlName="proposta" class="form-control col-md-6 col-xs-12" type="text" placeholder="000000">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="PROGRAMAÇÃO">
+        <input formControlName="programa" class="form-control col-md-12 col-xs-12" type="text" placeholder="Programação">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="DATA DA CONTRATAÇÃO">
+        <ngbd-datepicker-popup [date]="contratacao" field="contratacao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+        <input formControlName="contratacao" type="hidden">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="DATA DA VIGÊNCIA">
+          <ngbd-datepicker-popup [date]="vigencia" field="vigencia" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+        <input formControlName="vigencia" type="hidden">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="PUBLICAÇÃO NO DIÁRIO OFICIAL – DOU">
+        <input formControlName="publicacao" class="form-control col-md-12 col-xs-12" type="text" placeholder="Publicação no diário oficial-DOU">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="INVESTIMENTO GLOBAL R$">
+        <input currencyMask formControlName="investimento" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="VALOR DE REPASSE R$">
+        <input currencyMask formControlName="repasse" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="VALOR DE CONTRAPARTIDA R$">
+        <input currencyMask formControlName="contrapartida" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="DETALHES DO PROJETO">
+        <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+      </app-input-inline>
+
+      <app-input-hidden>
+          <input formControlName="created_at" type="hidden">
+        </app-input-hidden>
+      <app-input-hidden>
+          <input formControlName="updated_at" type="hidden">
+        </app-input-hidden>
+        
+      <div class="form-group row">
+        <div class="col-md-8 col-md-offset-3">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
+              o
+              uso do projeto
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-primary" (click)="onSubmit(formContract.value)" [disabled]="!formContract.valid"><i class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar
+      Cadastro</button>
+  </div>
+</div>

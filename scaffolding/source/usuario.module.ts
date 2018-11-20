@@ -25,7 +25,6 @@ import {
         SharedModule
     ],
     declarations: [
-        #MODULO_CAP#CreateComponent,
         #MODULO_CAP#EditComponent,
         #MODULO_CAP#Component,
         #MODULO_CAP#ViewComponent,

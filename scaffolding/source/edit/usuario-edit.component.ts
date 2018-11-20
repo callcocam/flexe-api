@@ -20,8 +20,9 @@ import * as moment from 'moment';
 })
 export class #MODULO_CAP#EditComponent implements OnInit {
 
-  formGroup: FormGroup
+  public formGroup: FormGroup
 
+  public file: File
 
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
@@ -41,7 +42,8 @@ export class #MODULO_CAP#EditComponent implements OnInit {
 	  }),
 	  
 	  //Aqui vai os outros campos 
-	  
+      status: new FormControl(''),
+      
       created_at: new FormControl('', {
 
         validators: [Validators.required]
@@ -59,11 +61,16 @@ export class #MODULO_CAP#EditComponent implements OnInit {
     this.getItem();
   }
 
+  SelectedFile(event){
+
+    this.file = event
+
+  }
+
   getItem() {
 
     let id = this.activateRoute.snapshot.params['id'];
 
-    console.log(id)
     if(id){
       this.service.path = '/#MODULO#';
 
@@ -86,7 +93,9 @@ export class #MODULO_CAP#EditComponent implements OnInit {
 
   onSubmit(value) {
 
-    this.service.post(value).subscribe(response => {
+     this.service.path = '/#MODULO#';
+     
+    this.service.post(value,this.file).subscribe(response => {
 
       this.alert.success(response.error)
 

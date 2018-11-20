@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
+import {  Title } from '@angular/platform-browser';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MEAT_API } from '../app.api';
 import { AuthService } from '../admin/auth/auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Injectable({
     providedIn: 'root'
@@ -11,10 +14,13 @@ export class ResourcesService {
 
     public path = "";
     public params: HttpParams;
+    public company: any
+    public services: any
 
     constructor(
         private http: HttpClient,
-        private authService: AuthService) { 
+        private authService: AuthService,
+        private titleService: Title) { 
 
             this.params = new HttpParams()
 
@@ -55,11 +61,28 @@ export class ResourcesService {
 
     }
 
+    
+    search(searchTerm = null): Observable<any> {
+
+        if (searchTerm) {
+            
+            this.params = new HttpParams()
+                .append('key', searchTerm.key)
+                .append('value', searchTerm.value)
+        }
+        return this.http.get(
+
+            `${this.baseUrl}/api${this.path}/search`, { params: this.params }
+
+        );
+
+    }
+
     list(): Observable<any> {
 
         return this.http.get(
 
-            `${this.baseUrl}${this.path}`, { params: this.params }
+            `${this.baseUrl}/api${this.path}`, { params: this.params }
 
         );
     }
@@ -67,34 +90,34 @@ export class ResourcesService {
 
     getItem(id?: any): Observable<any> {
 
-        return this.http.get(`${this.baseUrl}${this.path}/${id}`);
+        return this.http.get(`${this.baseUrl}/api${this.path}/${id}`);
 
     }
 
     view(id?: any): Observable<any> {
 
-        return this.http.get(`${this.baseUrl}${this.path}/${id}`);
+        return this.http.get(`${this.baseUrl}/api${this.path}/${id}/view`);
 
     }
 
     select2(index:string,text:string,id?:string): Observable<any> {
 
         if(id){
-            return this.http.get(`${this.baseUrl}${this.path}/select/${index}/${text}/${id}`);
+            return this.http.get(`${this.baseUrl}/api${this.path}/select/${index}/${text}/${id}`);
         }
-        return this.http.get(`${this.baseUrl}${this.path}/select/${index}/${text}`);
+        return this.http.get(`${this.baseUrl}/api${this.path}/select/${index}/${text}`);
 
     }
 
     edit(id?: any): Observable<any> {
 
-        return this.http.get(`${this.baseUrl}${this.path}/${id}/edit`);
+        return this.http.get(`${this.baseUrl}/api${this.path}/${id}/edit`);
 
     }
 
     getList(params?: any): Observable<any> {
         return this.http.get(
-            `${this.baseUrl}${this.path}`
+            `${this.baseUrl}/api${this.path}`
         );
     }
 
@@ -114,9 +137,11 @@ export class ResourcesService {
 
         }
 
+        console.log(this.authService.user.company_id)
+
         formData.append('company_id', this.authService.user.company_id);
 
-        return this.http.post(`${this.baseUrl}${this.path}/save`, formData);
+        return this.http.post(`${this.baseUrl}/api${this.path}/save`, formData);
 
         // return this.http.post(`${this.baseUrl}${this.path}/save`, formData, {
         //     reportProgress: true,
@@ -126,7 +151,7 @@ export class ResourcesService {
 
     delete(id: any): Observable<any> {
 
-        return this.http.delete(`${this.baseUrl}${this.path}/${id}/delete`);
+        return this.http.delete(`${this.baseUrl}/api${this.path}/${id}/delete`);
 
     }
 
@@ -139,5 +164,39 @@ export class ResourcesService {
     refreshToken() {
         this.authService.refreshToke();
     }
+
+
+    
+  getErrors(formGroup: FormGroup, errors: any = {}) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        errors[field] = control.errors;
+      } else if (control instanceof FormGroup) {
+        errors[field] = this.getErrors(control);
+      }
+    });
+    return errors;
+  }
+
+  addService(service){
+
+    this.services = service
+
+  }
+  
+  getCompany(company){
+	  
+	  this.company = company
+	  
+  }
+	  
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
+  }
+
+   public src( src: string) {
+    return  `${this.baseUrl}${src}`;
+  }
 
 }

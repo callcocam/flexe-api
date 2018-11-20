@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { JwtTokenService } from './jwt-token.service';
 
+import { APP_KEY_CONPANY } from '../../app.api';
 @Injectable()
 
 export class Interceptor implements HttpInterceptor {
@@ -22,7 +23,7 @@ export class Interceptor implements HttpInterceptor {
             headers:new HttpHeaders({
                //'Content-Type':  'charset=utf-8',
                // 'Content-Type':  'application/json; charset=utf-8',
-                'Company-key':'sistema',
+                'Company-key':APP_KEY_CONPANY,
                 'Authorization':`Bearer ${this.jwtToken.token}`
             })
         });

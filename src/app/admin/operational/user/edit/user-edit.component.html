@@ -1,75 +1,67 @@
 <main class="app-content">
   <app-breadcrumb page="Empresa" description="Editar Ususario {{user?.name}}"></app-breadcrumb>
-  <app-tabs [navs]="navs" title="Editar ou Cadastar  Ususario {{user?.name}}">
-    <div class="tab-pane fade active show" id="home">
-      <form class="form-horizontal mt-5" [formGroup]="formGroup" novalidate>
-        <app-input-hidden>
-          <input formControlName="id" type="hidden">
-        </app-input-hidden>
-        <!-- <app-input-hidden>
-                  <input formControlName="alias" type="hidden">
-                </app-input-hidden>
-                  -->
-        <app-input-inline errorMessage="Campo obrigatório" label="Nome Completo">
-          <input formControlName="name" class="form-control col-md-9 col-xs-12" type="text" placeholder="Nome Completo">
-        </app-input-inline>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <h3 class="tile-title">Ususario {{user?.name}}</h3>
+        <div class="tile-body">
+          <form class="form-horizontal mt-5" [formGroup]="formGroup" novalidate>
+            <app-input-hidden>
+              <input formControlName="id" type="hidden">
+            </app-input-hidden>
+            <app-input-inline errorMessage="Campo obrigatório" label="Nome Completo">
+              <input formControlName="name" class="form-control col-md-9 col-xs-12" type="text" placeholder="Nome Completo">
+            </app-input-inline>
 
-        <app-select2 *ngIf="roles" resource="/role" label="Selecione um nivel" [value]="roleId" (selected)="onSelectRole($event)">
-          <input formControlName="role_id" type="hidden">
-        </app-select2>
+            <app-select2 *ngIf="roles" resource="/role" label="Selecione um nivel" [value]="roleId" (selected)="onSelectRole($event)">
+              <input formControlName="role_id" type="hidden">
+            </app-select2>
 
-        <app-input-inline errorMessage="Campo obrigatório" label="E-Mail">
-          <input formControlName="email" class="form-control col-md-9 col-xs-12" type="text" placeholder="Seu melhor E-Mail">
-        </app-input-inline>
+            <app-input-inline errorMessage="Campo obrigatório" label="E-Mail">
+              <input formControlName="email" class="form-control col-md-9 col-xs-12" type="text" placeholder="Seu melhor E-Mail">
+            </app-input-inline>
+            <hr>
+            <app-file-upload-preview *ngIf="cover" [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
+              <input type="hidden" formControlName="cover">
+            </app-file-upload-preview>
+            <hr>
+            <app-input-inline errorMessage="Campo obrigatório" label="Observações">
+              <textarea formControlName="description" class="form-control col-md-9 col-xs-12" placeholder="Observações"></textarea>
+            </app-input-inline>
 
-        <app-file-upload errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
-          <input type="hidden" formControlName="cover">
-        </app-file-upload>
+            <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
+              <input formControlName="created_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
+                placeholder="Criado Em" dateTimeMask="99/99/9999 99:99:99">
+            </app-input-inline>
 
-        <app-input-inline errorMessage="Campo obrigatório" label="Observações">
-          <textarea formControlName="description" class="form-control col-md-9 col-xs-12" placeholder="Observações"></textarea>
-        </app-input-inline>
+            <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
+              <input formControlName="updated_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
+                placeholder="Atualizado Em" dateTimeMask="99/99/9999 99:99:99">
+            </app-input-inline>
 
-        <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
-          <input formControlName="created_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
-            placeholder="Criado Em" appMask="99/99/9999 99:99:99">
-        </app-input-inline>
-
-        <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
-          <input formControlName="updated_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
-            placeholder="Atualizado Em" appMask="99/99/9999 99:99:99">
-        </app-input-inline>
-
-        <div class="form-group row">
-          <div class="col-md-8 col-md-offset-3">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar o
-                uso
-              </label>
+            <div class="form-group row">
+              <div class="col-md-8 col-md-offset-3">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar o
+                    acesso
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tile-footer">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-3">
+              <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i
+                  class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger"
+                [routerLink]="['/admin/usuarios']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar Para A Lista</a>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-3">
-            <button class="btn btn-primary" (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid"><i class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar
-              Cadastro</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" [routerLink]="['/admin/usuarios']"><i class="fa fa-fw fa-lg fa-times-circle"></i>Voltar
-              Para A Lista</a>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-    <div class="tab-pane fade" id="contact">
-      <call-contact *ngIf="user" table="users" [parent]="user"></call-contact>
-    </div>
-    <div class="tab-pane fade" id="soscial">
-      <app-social *ngIf="user" table="users" [parent]="user"></app-social>
-    </div>
-    <div class="tab-pane fade" id="document">
-      <app-document *ngIf="user" table="users" [parent]="user"></app-document>
-    </div>
-    <div class="tab-pane fade" id="address">
-      <app-address *ngIf="user" table="users" [parent]="user"></app-address>
-    </div>
-  </app-tabs>
+    <div class="clearix"></div>
+  </div>
 </main>

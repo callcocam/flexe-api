@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-12">    
+      <form class="form-horizontal mt-4" [formGroup]="formLicitation" (change)="validate()" novalidate>
+        <app-input-hidden>
+          <input formControlName="id" type="hidden">
+        </app-input-hidden>
+        <app-input-hidden>
+          <input formControlName="project_id" type="hidden">
+        </app-input-hidden>
+      
+        <app-input-inline errorMessage="Campo obrigatório" label="PROCESSO LICITATÓRIO Nº">
+          <input formControlName="number_processo" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+        </app-input-inline>
+      
+        <app-input-inline errorMessage="Campo obrigatório" label="MODALIDADE DE LICITAÇÃO">
+          <input formControlName="modalidade" class="form-control col-md-6 col-xs-12" type="text" placeholder="Modalidade Da solicitação">
+        </app-input-inline>   
+      
+        <app-input-inline errorMessage="Campo obrigatório" label="EMPRESA VENCEDORA">
+          <input formControlName="company" class="form-control col-md-6 col-xs-12" type="text" placeholder="Nome Da Empresa Vencedora">
+        </app-input-inline>
+      
+        <app-input-inline errorMessage="Campo obrigatório" label="CNPJ EMPRESA VENCEDORA">
+          <input formControlName="document" class="form-control col-md-4 col-xs-12" type="text" placeholder="000.000.000/0000-00" cnpj PCnpj>
+        </app-input-inline>
+    
+        <app-input-hidden>
+            <input formControlName="created_at" type="hidden">
+          </app-input-hidden>
+        <app-input-hidden>
+            <input formControlName="updated_at" type="hidden">
+          </app-input-hidden>
+  
+        <div class="form-group row">
+          <div class="col-md-8 col-md-offset-3">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
+                o
+                uso do projeto
+              </label>
+            </div>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary" (click)="onSubmit(formLicitation.value)" [disabled]="!formLicitation.valid"><i
+          class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>
+    </div>
+  </div>

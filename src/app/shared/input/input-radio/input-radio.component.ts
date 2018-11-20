@@ -31,6 +31,8 @@ export class InputRadioComponent implements OnInit, ControlValueAccessor  {
 
   setValue(value: any){
     this.value = value
+
+    console.log(value)
     this.onChange(this.value)
   }
 

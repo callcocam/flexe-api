@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal mt-4" [formGroup]="formConclusion" (change)="validate()" novalidate>
+      <app-input-hidden>
+        <input formControlName="id" type="hidden">
+      </app-input-hidden>
+      <app-input-hidden>
+        <input formControlName="project_id" type="hidden">
+      </app-input-hidden>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Do Projeto">
+        <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+      </app-input-inline>
+
+      <app-input-hidden>
+          <input formControlName="created_at" type="hidden">
+        </app-input-hidden>
+      <app-input-hidden>
+          <input formControlName="updated_at" type="hidden">
+        </app-input-hidden>
+       <app-input-inline errorMessage="Campo obrigatório" label="Situação da obra">
+            <select formControlName="status" class="form-control col-md-12 col-xs-12" placeholder="Situação da obra">
+               <option *ngFor="let option of paymentOptions" [value]="option.value">{{option.label}}</option>     
+            </select>
+        </app-input-inline>
+    </form>
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-primary" (click)="onSubmit(formConclusion.value)" [disabled]="!formConclusion.valid"><i
+        class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>
+  </div>
+  </div>
+  <hr>
+<div class="row">
+  <div class="col-md-12">
+          <app-file-uploader (ApiResponse)="DocUpload($event)" [config]="afuConfig">
+              <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                   
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Tamanho</th>
+                    <th>MimiType</th>
+                     <th>#</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="images">
+                  <tr *ngFor="let item of images">
+                    <td><img style="width: 60px;" [src]="img(item.link)"></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.with }}</td>
+                    <td>{{ item.type }}</td>
+                    <td><button class="btn btn-danger btn-xs" (click)="excluirImage(item.id)"><i class="fa fa-trash"></i> Excluir</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            </app-file-uploader>
+        </div>
+</div>

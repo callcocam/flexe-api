@@ -68,7 +68,7 @@ export class TableLayoutComponent implements OnInit {
     changePage($event, page) {
 
         $event.preventDefault();
-         console.log(page)
+        
         this.params.page = page
 
         this.onSearch()
@@ -107,6 +107,7 @@ export class TableLayoutComponent implements OnInit {
     }
 
     load() {
+        
         this.records = null
 
         if (this.settings) {

@@ -6,7 +6,7 @@
  */
 
 /*#import { Component, OnInit } from '@angular/core';
-import { ResourcesService } from '../../shared/resources.service';
+import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService, Snotify } from 'ng-snotify';
 
 @Component({

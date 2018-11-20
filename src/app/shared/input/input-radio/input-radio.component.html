@@ -1,6 +1,6 @@
      <div *ngFor="let option of options" class="animated-radio-button">
       <label>
-        <input type="radio" name="{{name}}"><span class="label-text"> {{option.label}}</span>
+        <input type="radio" [value]="option.value" formControlName="status"><span class="label-text"> {{option.label}}</span>
       </label>
     </div>
   

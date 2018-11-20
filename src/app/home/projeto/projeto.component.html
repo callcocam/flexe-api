@@ -1,0 +1,29 @@
+<ngbd-typeahead [busca]="false" [tenant]="tenant"></ngbd-typeahead>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{ results?.name }}</h1>
+        <p class="lead">{{ results?.description }}</p>
+    </div>
+</div>
+<section class="p-5 mt-5">
+    <div class="container">
+        <div class="row"  *ngIf="contract">
+            <div class="col col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item" routerLinkActive="active"><a [routerLink]="[ 'contrato' ]">1 - Contratação</a></li>
+                    <li class="list-group-item" routerLinkActive="active"><a [routerLink]="[ 'licitacao' ]">2 - Licitação</a> </li>
+                    <li class="list-group-item" routerLinkActive="active"><a [routerLink]="[ 'execucao' ]">3 - Execução</a> </li>
+                    <li class="list-group-item" routerLinkActive="active"><a [routerLink]="[ 'conclusao' ]">4 - Conclusão</a> </li>
+                    <li class="list-group-item" routerLinkActive="active"><a [routerLink]="[ 'relatorio' ]">Relatório</a> </li>
+                </ul>
+            </div>
+            <div class="col col-md-9" *ngIf="tenant"><router-outlet></router-outlet></div>
+           
+        </div>
+        <div class="row">
+             <div class="col-md-12 text-center" *ngIf="!contract">
+                <h3>Obra <b>{{ results?.name }}</b>, ainda não foi iniciada!</h3>
+            </div>
+        </div>
+    </div>
+</section>

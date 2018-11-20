@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost.project-api-rest-base/api'
+  api: 'http://localhost.project-api-rest-base',
+  default:'sistema'
 };
 
 /*

@@ -30,7 +30,7 @@ export class AuthService {
     }
 
     login(data: any): Observable<any> {
-        return this.http.post(`${this.baseUrl}/auth/login`, data);
+        return this.http.post(`${this.baseUrl}/api/auth/login`, data);
     }
 
     logout() {
@@ -45,6 +45,6 @@ export class AuthService {
     }
 
     private getUser() {
-        return this.http.get(`${this.baseUrl}/auth/${this.localStorage.getObject(this.USER_KEY).id}`);
+        return this.http.get(`${this.baseUrl}/api/auth/${this.localStorage.getObject(this.USER_KEY).id}`);
     }
 }

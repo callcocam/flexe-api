@@ -45,7 +45,7 @@ export class Select2Component implements OnInit {
 
     this.ajaxOptions = {
 
-      url: `${MEAT_API}${this.resource}/select/${this.id}/${this.text}`,
+      url: `${MEAT_API}/api${this.resource}/select/${this.id}/${this.text}`,
 
       data: function (params) {
 

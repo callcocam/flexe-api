@@ -1,0 +1,39 @@
+<ngbd-typeahead (results)="list($event)" [filterSerach]="filterSerach" [tenant]="tenant" [status]="2"></ngbd-typeahead>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Obras Públicas Conclúidas</h1>
+        <p class="lead">Acompanhe as óbras públicas municipais conclúidas do municipio de {{ tenant?.name }}.</p>
+    </div>
+</div>
+<section class="p-5">
+    <div class="container" *ngIf="settings">   
+        <app-table [settings]="settings" (eventPage)="list($event)">
+        <div class="row"  *ngIf="results">
+            <div class="col col-md-6" *ngFor="let item of results">
+                 <div class="mask pattern-8 flex-center">
+   
+            <!-- Card -->
+            <div class="card card-image mb-3"  [ngStyle]="{'background-image': 'url(' + img(item.cover) + ')'}">
+
+            <!-- Content -->
+            <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                <div>
+                    <h5 class="pink-text"><i class="fa fa-pie-chart"></i> {{ item.updated_at }}</h5>
+                    <h3 class="card-title pt-2"><strong>{{ item.name }}</strong></h3>
+                    <p>{{ item.description }}</p>
+                    <a mdbBtn color="pink" class="waves-light btn-primary" mdbWavesEffect [routerLink]="[ '/projeto', item.alias ]"><i class="fa fa-clone left"></i> Detalhes Do Projeto</a>
+                </div>
+            </div>
+        <!-- Content -->
+        </div>
+         </div>
+<!-- Card -->
+</div>
+</div>
+<!-- Card -->
+        </app-table>
+        
+    </div>
+
+
+</section>

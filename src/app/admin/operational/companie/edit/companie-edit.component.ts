@@ -24,6 +24,8 @@ export class CompanieEditComponent implements OnInit {
 
   public companie
 
+  cover:string = 'https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547';
+
   file: File
 
   public navs = [
@@ -95,10 +97,17 @@ export class CompanieEditComponent implements OnInit {
           this.formGroup.get('cover').setValue(response.cover)
           this.formGroup.get('description').setValue(response.description)
           this.formGroup.get('status').setValue(response.status)
-          this.formGroup.get('created_at').setValue(response.created_at)
+          this.formGroup.get('created_at').setValue(moment(response.created_at).format('DD/MM/YYYY HH:mm:ss'))
           this.formGroup.get('updated_at').setValue(moment().format('DD/MM/YYYY HH:mm:ss'))
 
           this.companie = response
+
+          if(response.cover){
+
+            this.cover =  `${this.service.baseUrl}${response.cover}`
+
+          }
+         
 
         },
         error => {

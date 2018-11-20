@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal mt-4" [formGroup]="formExecutation" (change)="validate()" novalidate>
+      <app-input-hidden>
+        <input formControlName="id" type="hidden">
+      </app-input-hidden>
+      <app-input-hidden>
+        <input formControlName="project_id" type="hidden">
+      </app-input-hidden>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="PERCENTUAL OBRA/SERVIÇO">
+        <input formControlName="percentual" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="DATA DA ÚLTIMA MEDIÇÃO">
+        <ngbd-datepicker-popup [date]="data_medicao" field="data_medicao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+        <input formControlName="data_medicao" type="hidden">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="PREVISÃO DE CONCLUSÃO">
+        <ngbd-datepicker-popup [date]="previsao_conclusao" field="previsao_conclusao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+        <input formControlName="previsao_conclusao" type="hidden">
+      </app-input-inline>
+
+      <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Do Projeto">
+        <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+      </app-input-inline>
+
+      <app-input-hidden>
+          <input formControlName="created_at" type="hidden">
+        </app-input-hidden>
+      <app-input-hidden>
+          <input formControlName="updated_at" type="hidden">
+        </app-input-hidden>
+        
+      <div class="form-group row">
+        <div class="col-md-8 col-md-offset-3">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
+              o
+              uso do projeto
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-primary" (click)="onSubmit(formExecutation.value)" [disabled]="!formExecutation.valid"><i
+        class="fa fa-fw fa-lg fa-check-circle"></i>Finalizar Cadastro</button>
+  </div>
+</div>
