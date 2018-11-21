@@ -1,5 +1,5 @@
 # ProjectAdminClient
-verificar se o angular cli esta instalado digite ng -v devaera aparecer uma parcial do angular cli
+verificar se o angular cli esta instalado digite ng -v devera aparecer uma parcial do angular cli
 
 caso não esteja instalado rode o comando 
 
