@@ -10,8 +10,8 @@
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">Início</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link" [routerLink]="['/concluidos']">Obras Concluidas</a>
+                    <li class="nav-item" *ngIf="tenant?.link">
+                         <a target="_blank" class="nav-link" href="{{ tenant?.link }}">Voltar ao portal</a>
                     </li>
 
                 </ul>

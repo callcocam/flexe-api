@@ -10,18 +10,22 @@
       
         <app-input-inline errorMessage="Campo obrigatório" label="PROCESSO LICITATÓRIO Nº">
           <input formControlName="number_processo" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+           <div class="form-control-feedback has-danger" *ngIf="formLicitation.get('number_processo').hasError('required')">Por favor preencha esse campo!</div>
         </app-input-inline>
       
         <app-input-inline errorMessage="Campo obrigatório" label="MODALIDADE DE LICITAÇÃO">
           <input formControlName="modalidade" class="form-control col-md-6 col-xs-12" type="text" placeholder="Modalidade Da solicitação">
+           <div class="form-control-feedback has-danger" *ngIf="formLicitation.get('modalidade').hasError('required')">Por favor preencha esse campo!</div>
         </app-input-inline>   
       
         <app-input-inline errorMessage="Campo obrigatório" label="EMPRESA VENCEDORA">
           <input formControlName="company" class="form-control col-md-6 col-xs-12" type="text" placeholder="Nome Da Empresa Vencedora">
+           <div class="form-control-feedback has-danger" *ngIf="formLicitation.get('company').hasError('required')">Por favor preencha esse campo!</div>
         </app-input-inline>
       
         <app-input-inline errorMessage="Campo obrigatório" label="CNPJ EMPRESA VENCEDORA">
           <input formControlName="document" class="form-control col-md-4 col-xs-12" type="text" placeholder="000.000.000/0000-00" cnpj PCnpj>
+           <div class="form-control-feedback has-danger" *ngIf="formLicitation.get('document').hasError('required')">Por favor preencha esse campo!</div>
         </app-input-inline>
     
         <app-input-hidden>

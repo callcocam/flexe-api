@@ -18,7 +18,7 @@ import { SnotifyService, Snotify } from 'ng-snotify';
 })
 export class ProjectDeleteComponent implements OnInit {
 
-  redirectAfterDelete = ['/admin/projects'];
+  redirectAfterDelete = ['/admin/projetos'];
 
   constructor( public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,

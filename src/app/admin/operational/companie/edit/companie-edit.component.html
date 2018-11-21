@@ -26,9 +26,13 @@
             </div>
             <app-input-inline errorMessage="Campo obrigatório" label="Nome Da Empresa">
               <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Nome Da Empresa">
+               <div class="form-control-feedback has-danger" *ngIf="formGroup.get('name').hasError('required')">Por favor preencha esse campo!</div>
+            </app-input-inline>
+             <app-input-inline errorMessage="Campo obrigatório" label="Site Da Empresa">
+              <input formControlName="link" class="form-control col-md-12 col-xs-12" type="text" placeholder="Site Da Empresa">
             </app-input-inline>
             <hr>
-            <app-file-upload-preview *ngIf="cover" [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
+            <app-file-upload-preview  [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
               <input type="hidden" formControlName="cover">
             </app-file-upload-preview>
             <hr>

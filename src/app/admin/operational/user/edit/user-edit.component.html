@@ -9,34 +9,39 @@
             <app-input-hidden>
               <input formControlName="id" type="hidden">
             </app-input-hidden>
+             <app-input-hidden>
+              <input formControlName="created_at" type="hidden">
+            </app-input-hidden>
+             <app-input-hidden>
+              <input formControlName="updated_at" type="hidden">
+            </app-input-hidden>
             <app-input-inline errorMessage="Campo obrigatório" label="Nome Completo">
               <input formControlName="name" class="form-control col-md-9 col-xs-12" type="text" placeholder="Nome Completo">
+               <div class="form-control-feedback has-danger" *ngIf="formGroup.get('name').hasError('required')">Por favor preencha esse campo!</div>
             </app-input-inline>
 
-            <app-select2 *ngIf="roles" resource="/role" label="Selecione um nivel" [value]="roleId" (selected)="onSelectRole($event)">
-              <input formControlName="role_id" type="hidden">
-            </app-select2>
+            <app-input-inline errorMessage="Campo obrigatório" label="Nivel De Acesso">
+                <select formControlName="role_id" class="form-control col-md-12 col-xs-12" placeholder="Selecione um nivel">
+                 <option *ngFor="let option of rolesOptions" [value]="option.value">{{option.label}}</option>     
+                </select>
+                 <div class="form-control-feedback has-danger" *ngIf="formGroup.get('role_id').hasError('required')">Por favor preencha esse campo!</div>
+            </app-input-inline>
 
             <app-input-inline errorMessage="Campo obrigatório" label="E-Mail">
               <input formControlName="email" class="form-control col-md-9 col-xs-12" type="text" placeholder="Seu melhor E-Mail">
+               <div class="form-control-feedback has-danger" *ngIf="formGroup.get('email').hasError('required')">Por favor preencha esse campo!</div>
+            </app-input-inline>
+            <app-input-inline errorMessage="Campo obrigatório" label="Senha">
+              <input formControlName="password" class="form-control col-md-9 col-xs-12" type="password" placeholder="Digite uma senha">
+              <div class="form-control-feedback has-danger" *ngIf="formGroup.get('password').hasError('required')">Por favor preencha esse campo!</div>
             </app-input-inline>
             <hr>
-            <app-file-upload-preview *ngIf="cover" [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
+            <app-file-upload-preview [url]="cover" errorMessage="Campo obrigatório" label="Selecione Uma Foto" (SelectedFile)="SelectedFile($event)">
               <input type="hidden" formControlName="cover">
             </app-file-upload-preview>
             <hr>
             <app-input-inline errorMessage="Campo obrigatório" label="Observações">
               <textarea formControlName="description" class="form-control col-md-9 col-xs-12" placeholder="Observações"></textarea>
-            </app-input-inline>
-
-            <app-input-inline errorMessage="Campo obrigatório" label="Criado Em">
-              <input formControlName="created_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
-                placeholder="Criado Em" dateTimeMask="99/99/9999 99:99:99">
-            </app-input-inline>
-
-            <app-input-inline errorMessage="Campo obrigatório" label="Atualizado Em">
-              <input formControlName="updated_at" class="form-control col-md-6 col-xs-12" readonly="true" type="text"
-                placeholder="Atualizado Em" dateTimeMask="99/99/9999 99:99:99">
             </app-input-inline>
 
             <div class="form-group row">

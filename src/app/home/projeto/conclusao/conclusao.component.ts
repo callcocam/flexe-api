@@ -8,6 +8,7 @@ import { ResourcesService } from 'src/app/shared/resources.service';
 })
 export class ConclusaoComponent implements OnInit {
 
+  
   public conclusion
 
 public images;

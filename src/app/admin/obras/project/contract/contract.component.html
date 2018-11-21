@@ -7,52 +7,62 @@
       <app-input-hidden>
         <input formControlName="project_id" type="hidden">
       </app-input-hidden>
+       <app-input-hidden>
+        <input formControlName="description" type="hidden">
+      </app-input-hidden>
 
       <app-input-inline errorMessage="Campo obrigatório" label="CONVÊNIO/CONTRATO DE REPASSE Nº">
-        <input formControlName="convenio" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+        <input formControlName="convenio" class="form-control col-md-12 col-xs-12" type="text" placeholder="CONVÊNIO/CONTRATO DE REPASSE Nº">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('convenio').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="CONVÊNIO SIAFI Nº">
-        <input formControlName="convenio_siafi" class="form-control col-md-6 col-xs-12" type="text" placeholder="000000">
+        <input formControlName="convenio_siafi" class="form-control col-md-6 col-xs-12" type="text" placeholder="CONVÊNIO SIAFI Nº">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('convenio_siafi').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="PROPOSTA SICONV Nº">
-        <input formControlName="proposta" class="form-control col-md-6 col-xs-12" type="text" placeholder="000000">
+        <input formControlName="proposta" class="form-control col-md-6 col-xs-12" type="text" placeholder="PROPOSTA SICONV Nº">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('proposta').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="PROGRAMAÇÃO">
         <input formControlName="programa" class="form-control col-md-12 col-xs-12" type="text" placeholder="Programação">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('programa').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="DATA DA CONTRATAÇÃO">
         <ngbd-datepicker-popup [date]="contratacao" field="contratacao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('contratacao').hasError('required')">Por favor preencha esse campo!</div>
         <input formControlName="contratacao" type="hidden">
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="DATA DA VIGÊNCIA">
           <ngbd-datepicker-popup [date]="vigencia" field="vigencia" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+           <div class="form-control-feedback has-danger" *ngIf="formContract.get('vigencia').hasError('required')">Por favor preencha esse campo!</div>
         <input formControlName="vigencia" type="hidden">
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="PUBLICAÇÃO NO DIÁRIO OFICIAL – DOU">
         <input formControlName="publicacao" class="form-control col-md-12 col-xs-12" type="text" placeholder="Publicação no diário oficial-DOU">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('publicacao').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="INVESTIMENTO GLOBAL R$">
         <input currencyMask formControlName="investimento" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('investimento').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="VALOR DE REPASSE R$">
         <input currencyMask formControlName="repasse" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('repasse').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="VALOR DE CONTRAPARTIDA R$">
         <input currencyMask formControlName="contrapartida" class="form-control col-md-3 col-xs-12" type="text" placeholder="00,00">
+         <div class="form-control-feedback has-danger" *ngIf="formContract.get('contrapartida').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
-      <app-input-inline errorMessage="Campo obrigatório" label="DETALHES DO PROJETO">
-        <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
-      </app-input-inline>
 
       <app-input-hidden>
           <input formControlName="created_at" type="hidden">

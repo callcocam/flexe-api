@@ -12,6 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
 import * as moment from 'moment';
+
+import {RadioOption} from 'src/app/shared/input/input-radio/radio-option.model'
+
 @Component({
   selector: 'call-user-edit',
   templateUrl: './user-edit.component.html',
@@ -21,7 +24,7 @@ export class UserEditComponent implements OnInit {
 
   formGroup: FormGroup
 
-  cover: string = 'https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547';
+  cover: string = '';
   
   public navs = [
     {index:'address',label:"Endereços"},
@@ -38,12 +41,21 @@ export class UserEditComponent implements OnInit {
 
   public roleId
 
+  rolesOptions:RadioOption[] = []
+
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
     private service: ResourcesService,
     private alert: SnotifyService) { }
 
   ngOnInit() {
+
+
+    this.service.roles().subscribe(response=>{
+
+      this.rolesOptions = response.rows
+
+    })
 
     this.formGroup = new FormGroup({
 
@@ -74,20 +86,18 @@ export class UserEditComponent implements OnInit {
 
       cover: new FormControl(''),
 
-      status: new FormControl(''),
-
-
-      created_at: new FormControl('', {
+      password: new FormControl('',{
 
         validators: [Validators.required]
 
       }),
+     
+      status: new FormControl(''),
 
-      updated_at: new FormControl('', {
 
-        validators: [Validators.required]
+      created_at: new FormControl(''),
 
-      })
+      updated_at: new FormControl('')
 
     }, { validators: [], updateOn: 'blur' })
 
@@ -112,6 +122,7 @@ export class UserEditComponent implements OnInit {
           this.formGroup.get('id').setValue(response.id)
           //Aqui vai os outros campos 
           this.formGroup.get('name').setValue(response.name)
+          this.formGroup.get('password').setValue('')
           this.formGroup.get('role_id').setValue(response.role_id)
           this.formGroup.get('email').setValue(response.email)
           this.formGroup.get('cover').setValue(response.cover)
@@ -127,8 +138,8 @@ export class UserEditComponent implements OnInit {
           this.roleId = response.role_id
           
           if(response.cover){
-
-            this.cover =  `${this.service.baseUrl}${response.cover}`
+            
+            this.cover =  this.service.src(response.cover)
 
           }
 

@@ -12,7 +12,7 @@ export class FileUploadPreviewComponent implements OnInit, AfterContentInit {
 
   @Input() label: string
 
-  @Input() url: string = 'https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547'
+  @Input() url: string = ''
 
   @Input() errorMessage: string
 
@@ -32,7 +32,18 @@ export class FileUploadPreviewComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
 
-    this.url = `${this.service.baseUrl}${this.url}`
+    
+    if(!this.url){
+      
+       this.url = `//dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547`
+
+    }
+    else{
+
+     this.url =  this.service.src(this.url)
+
+
+    }
 
   }
 

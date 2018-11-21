@@ -123,12 +123,24 @@ export class TableLayoutComponent implements OnInit {
             this.options = this.settings.options
 
             this.controller = this.options.controller  
+           
+            Object.keys(this.headers).forEach(key => {
+
+                  if(this.headers[key].visible==false){
+
+                    delete this.headers[key];
+
+                  }        
+                
+            })
 
             this.columnMaps = Object.keys(this.headers).map(key => {
-                               
-                return new ColumnMap(this.headers[key]);
+               
+              
+                    return new ColumnMap(this.headers[key]);
 
             });
+
 
             this.pager = this.pagerService.getPager(parseInt(this.params.totalItems), parseInt(this.params.page), parseInt(this.params.limit));
 

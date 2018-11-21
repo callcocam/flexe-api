@@ -8,6 +8,7 @@ export class ColumnSetting {
     order?: boolean = false;
     alias?: boolean = false;
     sortable?: boolean = false;
+    visible?: boolean = false;
     icone?: string = '';
 }
 export class ColumnMap {
@@ -21,6 +22,7 @@ export class ColumnMap {
     private _order: boolean;
     private _alias: boolean;
     private _sortable: boolean;
+    private _visible: boolean;
 	
 	constructor ( settings ) {
 		
@@ -34,6 +36,7 @@ export class ColumnMap {
         this.order = settings.order;
         this.alias = settings.alias;
         this.sortable = settings.sortable;
+        this.visible = settings.visible;
     }
 	
     set title(setting: string) {
@@ -144,6 +147,19 @@ export class ColumnMap {
     get sortable() {
         
         return this._sortable;
+        
+    }
+    
+
+    set visible(visible: boolean) {
+        
+        this._visible = visible;
+        
+    }
+    
+    get visible() {
+        
+        return this._visible;
         
     }
 	

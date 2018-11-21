@@ -31,13 +31,14 @@
                   <input formControlName="user_id" type="hidden">
                 </app-input-hidden>
 
-                <app-input-inline errorMessage="Campo obrigatório" label="Nome Da Empresa">
-                  <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Nome Da Empresa">
+                <app-input-inline errorMessage="Campo obrigatório" label="Nome Do Projeto">
+                  <input formControlName="name" class="form-control col-md-12 col-xs-12" type="text" placeholder="Nome da obra">
+                   <div class="form-control-feedback has-danger" *ngIf="formGroup.get('name').hasError('required')">Por favor preencha esse campo!</div>
                 </app-input-inline>
 
 
-                <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Do Projeto">
-                  <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
+                <app-input-inline label="Detalhes Do Projeto">
+                  <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes da obra"></textarea>
                 </app-input-inline>
 
                 <hr>
@@ -51,17 +52,11 @@
                 <app-input-hidden>
                     <input formControlName="updated_at" type="hidden">
                   </app-input-hidden>
-                <div class="form-group row">
-                  <div class="col-md-8 col-md-offset-3">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" formControlName="status" type="checkbox">Marcar para habilitar
-                        o
-                        uso do projeto
-                      </label>
-                    </div>
-                  </div>
-                </div>
+                <app-input-inline errorMessage="Campo obrigatório" label="Situação da obra">
+                    <select formControlName="status" class="form-control col-md-12 col-xs-12" placeholder="Situação da obra">
+                     <option *ngFor="let option of statusOptions" [value]="option.value">{{option.label}}</option>     
+                    </select>
+                </app-input-inline>
 
               </form>
             </div>

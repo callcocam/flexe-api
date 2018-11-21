@@ -2,12 +2,12 @@
   <li class="list-group-item"><b>CONVÊNIO Nº:</b><span class="float-right">{{ contract?.convenio }}</span></li>
   <li class="list-group-item"><b>CONVÊNIO SIAFI Nº:</b> <span class="float-right">{{ contract?.convenio_siafi }}</span></li>
   <li class="list-group-item"><b>PROPOSTA SICONV Nº:</b> <span class="float-right">{{ contract?.proposta }}</span></li>
-  <li class="list-group-item"><b>PROGRAMA AÇÃO:</b> <span class="float-right">{{ contract?.programa }}</span></li>
-  <li class="list-group-item"><b>DATA DA CONTRATAÇÃO:</b> <span class="float-right">{{ contract?.contratacao }}</span></li>
+  <li class="list-group-item"><b>PROGRAMAÇÃO:</b> <span class="float-right">{{ contract?.programa }}</span></li>
+  <li class="list-group-item"><b>DATA DA CONTRATAÇÃO:</b> <span class="float-right">{{ dateF(contract?.contratacao) }}</span></li>
   <li class="list-group-item"><b>PUBLICAÇÃO NO DIÁRIO OFICIAL – DOU:</b> <span class="float-right">{{ contract?.publicacao }}</span></li>
-  <li class="list-group-item"><b>DATA DA VIGÊNCIA:</b> <span class="float-right">{{ contract?.vigencia }}</span></li>
-  <li class="list-group-item"><b>INVESTIMENTO GLOBAL R$:</b> <span class="float-right">{{ contract?.investimento }}</span></li>
-  <li class="list-group-item"><b>VALOR DE REPASSE R$:</b> <span class="float-right">{{ contract?.repasse }}</span></li>
-  <li class="list-group-item"><b>VALOR DE CONTRAPARTIDA R$:</b> <span class="float-right">{{ contract?.contrapartida }}</span></li>
+  <li class="list-group-item"><b>DATA DA VIGÊNCIA:</b> <span class="float-right">{{ dateF(contract?.vigencia) }}</span></li>
+  <li class="list-group-item"><b>INVESTIMENTO GLOBAL R$:</b> <span class="float-right">{{ contract?.investimento  | currency: 'BRL': true}}</span></li>
+  <li class="list-group-item"><b>VALOR DE REPASSE R$:</b> <span class="float-right">{{ contract?.repasse  | currency: 'BRL': true}}</span></li>
+  <li class="list-group-item"><b>VALOR DE CONTRAPARTIDA R$:</b> <span class="float-right">{{ contract?.contrapartida  | currency: 'BRL': true}}</span></li>
   <li class="list-group-item"><b>DETALHES:</b> {{ contract?.description }}</li>
 </ul>

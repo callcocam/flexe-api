@@ -24,7 +24,7 @@ export class CompanieEditComponent implements OnInit {
 
   public companie
 
-  cover:string = 'https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547';
+  cover:string = '';
 
   file: File
 
@@ -48,7 +48,9 @@ export class CompanieEditComponent implements OnInit {
 
       cover: new FormControl(''),
 
-      alias: new FormControl(''),
+      alias: new FormControl(''),  
+
+      link: new FormControl(''),
       
       description: new FormControl(''),
 
@@ -63,17 +65,9 @@ export class CompanieEditComponent implements OnInit {
 	  
       status: new FormControl(''),
 
-      created_at: new FormControl('', {
+      created_at: new FormControl(''),
 
-        validators: [Validators.required]
-
-      }),
-
-      updated_at: new FormControl('', {
-
-        validators: [Validators.required]
-
-      })
+      updated_at: new FormControl('')
 
     }, { validators: [], updateOn: 'blur' })
 
@@ -93,6 +87,7 @@ export class CompanieEditComponent implements OnInit {
           //Aqui vai os outros campos 
           this.formGroup.get('type').setValue(response.type)
           this.formGroup.get('alias').setValue(response.alias)
+          this.formGroup.get('link').setValue(response.link)
           this.formGroup.get('name').setValue(response.name)
           this.formGroup.get('cover').setValue(response.cover)
           this.formGroup.get('description').setValue(response.description)
@@ -102,9 +97,9 @@ export class CompanieEditComponent implements OnInit {
 
           this.companie = response
 
-          if(response.cover){
-
-            this.cover =  `${this.service.baseUrl}${response.cover}`
+           if(response.cover){
+            
+            this.cover =  this.service.src(response.cover)
 
           }
          

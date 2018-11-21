@@ -6,6 +6,7 @@ import { MEAT_API } from '../app.api';
 import { AuthService } from '../admin/auth/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
+import * as moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -109,6 +110,16 @@ export class ResourcesService {
 
     }
 
+    roles(id?:string): Observable<any> {
+
+        if(id){
+            return this.http.get(`${this.baseUrl}/api/role/select/${id}`);
+        }
+        return this.http.get(`${this.baseUrl}/api/role/select`);
+
+    }
+
+
     edit(id?: any): Observable<any> {
 
         return this.http.get(`${this.baseUrl}/api${this.path}/${id}/edit`);
@@ -196,7 +207,14 @@ export class ResourcesService {
   }
 
    public src( src: string) {
+
     return  `${this.baseUrl}${src}`;
+    
+  }
+
+  dateF(d,f:string='DD/MM/YYYY'){
+
+      return  moment.unix(d).format(f);
   }
 
 }

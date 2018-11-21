@@ -13,6 +13,7 @@ import { ResourcesService } from 'src/app/shared/resources.service';
 import { SnotifyService } from 'ng-snotify';
 import * as moment from 'moment';
 import { AuthService } from 'src/app/admin/auth/auth.service';
+import {RadioOption} from 'src/app/shared/input/input-radio/radio-option.model'
 
 @Component({
   selector: 'call-project-edit',
@@ -25,7 +26,7 @@ export class ProjectEditComponent implements OnInit {
 
   file: File
 
-  cover:string = '//dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547'
+  cover:string = ''
 
   public project_id
   public contract
@@ -33,6 +34,12 @@ export class ProjectEditComponent implements OnInit {
   public execution
   public licitacion
 
+
+statusOptions: RadioOption[] = [
+    {label: 'Não iniciada', value: '1'},
+    {label: 'Em andamento', value: '2'},
+    {label: 'Concluída', value: '3'}
+  ]
   constructor(public notificationService: NotificationService,
     private activateRoute: ActivatedRoute,
     private service: ResourcesService,
@@ -98,7 +105,7 @@ export class ProjectEditComponent implements OnInit {
           this.execution = response.execution
           this.licitacion = response.licitacion
           if(response.cover){
-
+            
             this.cover =  this.service.src(response.cover)
 
           }

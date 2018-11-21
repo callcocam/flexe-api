@@ -1,7 +1,9 @@
 <ul class="list-group list-group-flush">
-   <li class="list-group-item"><b>PREVISÃO DE CONCLUSÃO:</b><span class="float-right"> {{ execution?.previsao_conclusao | date:'dd/MM/yyyy' }}</span></li>
-   <li class="list-group-item"><b>DATA DA ÚLTIMA MEDIÇÃO:</b><span class="float-right"> {{ execution?.data_medicao | date:'dd/MM/yyyy' }}</span></li>
-   <li class="list-group-item"><b>PERCENTUAL OBRA/SERVIÇO:</b><span class="float-right"> {{ execution?.percentual }}</span></li>
-   <li class="list-group-item"><b>SITUAÇÃO OBRA/SERVIÇO:</b><span class="float-right"> {{ execution?.status }}</span></li>
-   <li class="list-group-item"><b>DETALHES:</b> {{ execution?.description }}</li>
+   <li class="list-group-item"><b>PREVISÃO DE CONCLUSÃO:</b><span class="float-right"> {{  dateF(execution?.previsao_conclusao) }}</span></li>
+   <li class="list-group-item"><b>DATA DA ÚLTIMA MEDIÇÃO:</b><span class="float-right"> {{ dateF(execution?.data_medicao) }}</span></li>
+   <li class="list-group-item"><b>PERCENTUAL OBRA/SERVIÇO:</b><span class="float-right" style="width: 100%;"> <div class="progress">
+  <div class="progress-bar" role="progressbar" [ngStyle]="{'width': '' +execution?.percentual +'%','aria-valuenow':' +execution?.percentual +'}"  aria-valuemin="0" aria-valuemax="100"> {{ execution?.percentual }}%</div>
+</div>
+</span></li>
+   <li class="list-group-item"><b>SITUAÇÃO OBRA/SERVIÇO:</b><span class="float-right"> {{ staus?.label }}</span></li>
 </ul>

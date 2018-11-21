@@ -18,7 +18,7 @@
         <!--FIM DOS FILTROS-->
         
         <table [id]="tableId" [ngClass]="tableClass">
-          <thead>
+          <thead *ngIf="columnMaps">
             <tr>
               <th *ngFor="let map of columnMaps" [class.order]="map.order" (click)="onOrder(map.name,map.order)" [style.width]="map.width">
                 <i class="fa" 

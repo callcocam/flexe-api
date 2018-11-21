@@ -19,4 +19,10 @@ export class ContratoComponent implements OnInit {
   }
 
 
+
+  dateF(d,f?:string){
+
+  	return this.service.dateF(d,f)
+  	
+  }
 }

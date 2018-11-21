@@ -7,25 +7,26 @@
       <app-input-hidden>
         <input formControlName="project_id" type="hidden">
       </app-input-hidden>
-
+      <app-input-hidden>
+        <input formControlName="description" type="hidden">
+      </app-input-hidden>
       <app-input-inline errorMessage="Campo obrigatório" label="PERCENTUAL OBRA/SERVIÇO">
         <input formControlName="percentual" class="form-control col-md-12 col-xs-12" type="text" placeholder="000000">
+         <div class="form-control-feedback has-danger" *ngIf="formExecutation.get('percentual').hasError('required')">Por favor preencha esse campo!</div>
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="DATA DA ÚLTIMA MEDIÇÃO">
         <ngbd-datepicker-popup [date]="data_medicao" field="data_medicao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+         <div class="form-control-feedback has-danger" *ngIf="formExecutation.get('data_medicao').hasError('required')">Por favor preencha esse campo!</div>
         <input formControlName="data_medicao" type="hidden">
       </app-input-inline>
 
       <app-input-inline errorMessage="Campo obrigatório" label="PREVISÃO DE CONCLUSÃO">
         <ngbd-datepicker-popup [date]="previsao_conclusao" field="previsao_conclusao" (dateSelect)="SelectDate($event)"></ngbd-datepicker-popup>
+         <div class="form-control-feedback has-danger" *ngIf="formExecutation.get('previsao_conclusao').hasError('required')">Por favor preencha esse campo!</div>
         <input formControlName="previsao_conclusao" type="hidden">
       </app-input-inline>
-
-      <app-input-inline errorMessage="Campo obrigatório" label="Detalhes Do Projeto">
-        <textarea formControlName="description" class="form-control col-md-12 col-xs-12" placeholder="Detalhes Da Empresa"></textarea>
-      </app-input-inline>
-
+      
       <app-input-hidden>
           <input formControlName="created_at" type="hidden">
         </app-input-hidden>
